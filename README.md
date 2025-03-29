@@ -1,70 +1,155 @@
-# Getting Started with Create React App
+# Noah Lanka Glory (Pvt) Ltd Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive website for Noah Lanka Glory (Pvt) Ltd, showcasing their professional woodworking services and products.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- **Modern Design**: Clean and professional layout with smooth animations
+- **Responsive**: Fully responsive design that works on all devices
+- **Interactive**: Engaging user interface with hover effects and transitions
+- **Performance**: Optimized for fast loading and smooth scrolling
+- **Accessibility**: Built with accessibility best practices
 
-### `npm start`
+## 🛠️ Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React.js
+- React Router
+- Framer Motion
+- Font Awesome
+- CSS3 (with CSS Variables)
+- HTML5
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📦 Installation
 
-### `npm test`
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/noah-lanka-glory.git
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Navigate to the project directory:
+```bash
+cd noah-lanka-glory
+```
 
-### `npm run build`
+3. Install dependencies:
+```bash
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. Start the development server:
+```bash
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🏗️ Project Structure
 
-### `npm run eject`
+```
+noah-lanka-glory/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── Navbar.js
+│   │   ├── Home.js
+│   │   ├── Services.js
+│   │   ├── Products.js
+│   │   ├── About.js
+│   │   └── Contact.js
+│   ├── App.js
+│   ├── App.css
+│   └── index.js
+├── package.json
+└── README.md
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🎨 Design Features
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Navigation
+- Fixed navigation bar with smooth transitions
+- Mobile-friendly hamburger menu
+- Active link indicators
+- Smooth scroll behavior
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Home Page
+- Hero section with parallax effect
+- Animated service cards
+- Featured products section
+- "Why Choose Us" section with icons
+- Scroll-triggered animations
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Responsive Design
+- Mobile-first approach
+- Breakpoints for tablets and desktops
+- Flexible grid system
+- Adaptive typography
 
-## Learn More
+## 🔧 Customization
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Colors
+The website uses CSS variables for easy color customization. Edit the following variables in `src/App.css`:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```css
+:root {
+  --primary-color: #e67e22;
+  --secondary-color: #2c3e50;
+  --accent-color: #d35400;
+  --text-color: #333;
+  --light-bg: #f9f9f9;
+  --white: #ffffff;
+}
+```
 
-### Code Splitting
+### Images
+Replace the hero background image in `src/App.css`:
+```css
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('your-image-url');
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📱 Browser Support
 
-### Analyzing the Bundle Size
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Opera (latest)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🚀 Deployment
 
-### Making a Progressive Web App
+1. Build the project:
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+2. Deploy the `build` folder to your hosting service.
 
-### Advanced Configuration
+## 📄 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### Deployment
+## 👥 Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### `npm run build` fails to minify
+## 📞 Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For any queries or support, please contact:
+- Email: info@noahlankaglory.com
+- Phone: +94 XX XXX XXXX
+- Address: [Your Company Address]
+
+## 🙏 Acknowledgments
+
+- Font Awesome for icons
+- Unsplash for images
+- React community for tools and libraries
+
+---
+
+Made with ❤️ by [Your Name/Company]
