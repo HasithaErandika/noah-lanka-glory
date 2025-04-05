@@ -50,15 +50,55 @@ noah-lanka-glory/
 ├── public/
 ├── src/
 │   ├── components/
-│   │   ├── Navbar.js
-│   │   ├── Home.js
-│   │   ├── Services.js
-│   │   ├── Products.js
+│   │   ├── common/
+│   │   │    ├── Button/
+│   │   │    │     ├── Button.css
+│   │   │    │     └── Button.jsx
+│   │   │    ├── Card/
+│   │   │    │     ├── Card.css
+│   │   │    │     └── Card.jsx
+│   │   │    ├── Hero/
+│   │   │    │     ├── Hero.css
+│   │   │    │     └── Hero.jsx
+│   │   │    └── Section/
+│   │   │    │     ├── Section.css
+│   │   │    │     └── Section.jsx
 │   │   ├── About.js
-│   │   └── Contact.js
-│   ├── App.js
+│   │   ├── Contact.js
+│   │   ├── Footer.jsx
+│   │   ├── Home.js
+│   │   ├── Navbar.js
+│   │   ├── Navbar.jsx
+│   │   ├── Products.js
+│   │   ├── Services.js
+│   │   └── Services.jsx
+│   ├── context/
+│   │   └── ThemeContext.js
+│   ├── pages/
+│   │   ├── About.css
+│   │   ├── Contact.css
+│   │   ├── Home.css
+│   │   └── Products.css
+│   ├── styles/
+│   │   ├── About.css
+│   │   ├── Animations.css
+│   │   ├── Contact.css
+│   │   ├── global.css
+│   │   ├── Home.css
+│   │   ├── Products.css
+│   │   ├── Services.css
+│   │   └── variables.css
 │   ├── App.css
-│   └── index.js
+│   ├── App.js
+│   ├── App.jsx
+│   ├── App.test.js
+│   ├── index.css
+│   ├── index.js
+│   ├── Logo.svg
+│   ├── reportWEBVitals.js
+│   └── setupTests.js
+├── .gitignore
+├── package-lock.json
 ├── package.json
 └── README.md
 ```

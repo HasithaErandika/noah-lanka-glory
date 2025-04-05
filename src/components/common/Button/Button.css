@@ -3,52 +3,53 @@
   align-items: center;
   justify-content: center;
   font-weight: 500;
-  border-radius: var(--border-radius);
+  border-radius: var(--radius-md); /* Updated from --border-radius for consistency */
   cursor: pointer;
   transition: var(--transition);
   border: none;
   outline: none;
-  font-family: inherit;
+  font-family: 'Lora', serif; /* Elegant font */
+  color: #ffffff; /* Default white text */
 }
 
 /* Variants */
 .button--primary {
-  background-color: var(--primary-color);
-  color: white;
+  background-color: var(--primary-color); /* Gold (#FFD700) */
+  color: #121212; /* Elegant black for contrast */
 }
 
 .button--primary:hover {
-  background-color: var(--primary-dark);
+  background-color: var(--primary-dark); /* Darker gold (#E6C200) */
 }
 
 .button--secondary {
-  background-color: var(--secondary-color);
-  color: white;
+  background-color: var(--secondary-color); /* Deep blue-gray (#2C3E50) */
+  color: #ffffff; /* White text */
 }
 
 .button--secondary:hover {
-  background-color: var(--secondary-dark);
+  background-color: #1F2A3C; /* Slightly darker blue-gray (hardcoded since no --secondary-dark) */
 }
 
 .button--outline {
   background-color: transparent;
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
+  border: 2px solid var(--primary-color); /* Gold border */
+  color: var(--primary-color); /* Gold text */
 }
 
 .button--outline:hover {
-  background-color: var(--primary-color);
-  color: white;
+  background-color: var(--primary-color); /* Gold background */
+  color: #121212; /* Elegant black text */
 }
 
 .button--text {
   background-color: transparent;
-  color: var(--primary-color);
+  color: var(--primary-color); /* Gold text */
   padding: 0;
 }
 
 .button--text:hover {
-  color: var(--primary-dark);
+  color: var(--primary-dark); /* Darker gold */
   text-decoration: underline;
 }
 
@@ -79,28 +80,14 @@
   cursor: not-allowed;
 }
 
-/* Dark Mode */
-[data-theme="dark"] .button--outline {
-  border-color: var(--primary-light);
-  color: var(--primary-light);
-}
-
-[data-theme="dark"] .button--outline:hover {
-  background-color: var(--primary-light);
-  color: var(--background);
-}
-
-[data-theme="dark"] .button--text {
-  color: var(--primary-light);
-}
-
-[data-theme="dark"] .button--text:hover {
-  color: var(--primary-color);
-}
-
 /* Icon */
 .button-icon {
   display: flex;
   align-items: center;
   font-size: 1.1em;
-} 
+  transition: transform 0.3s ease; /* Smooth icon movement */
+}
+
+.button:hover .button-icon {
+  transform: translateX(5px); /* Subtle shift on hover, matches other CSS */
+}

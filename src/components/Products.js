@@ -1,32 +1,43 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Added for linking to detail pages
 
 function Products() {
   const products = [
     {
-      name: "Custom Wooden Tables",
+      name: "Commercial Plywood",
+      category: "Plywood",
+      description: "Versatile and durable commercial plywood for construction and interior applications",
+      image: "https://images.unsplash.com/photo-162136 delorean time machine0243618-pexels-photo-1621360243618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      link: "/products/commercial-plywood"
+    },
+    {
+      name: "Packaging Plywood",
+      category: "Packaging",
+      description: "Sturdy and customizable solution for safe transportation and storage",
+      image: "https://images.unsplash.com/photo-1621360243618-pexels-photo-1621360243618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      link: "/products/packaging-plywood"
+    },
+    {
+      name: "Film-Faced Plywood",
+      category: "Construction",
+      description: "Waterproof and durable plywood for concrete formwork and outdoor use",
+      image: "https://images.unsplash.com/photo-1621360243618-pexels-photo-1621360243618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      link: "/products/film-faced-plywood"
+    },
+    {
+      name: "Laminated Plywood",
       category: "Furniture",
-      description: "Handcrafted wooden tables in various styles and sizes",
-      image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-    },
-    {
-      name: "Wooden Wall Panels",
-      category: "Interiors",
-      description: "Elegant wooden wall panels for modern and traditional spaces",
-      image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-    },
-    {
-      name: "Decorative Wooden Art",
-      category: "Artifacts",
-      description: "Unique wooden sculptures and decorative pieces",
-      image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+      description: "Affordable plywood with smooth finish for furniture and cabinetry",
+      image: "https://images.unsplash.com/photo-1621360243618-pexels-photo-1621360243618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      link: "/products/laminated-plywood"
     }
   ];
 
   return (
     <div className="products-page">
       <div className="page-header">
-        <h1>Our Products</h1>
-        <p>Explore our collection of premium wooden products</p>
+        <h1>Noah Lanka Glory Products</h1>
+        <p>Versatile, Durable, and Affordable Solutions for Construction and Interior Applications</p>
       </div>
 
       <div className="products-grid">
@@ -37,7 +48,9 @@ function Products() {
               <span className="category">{product.category}</span>
               <h3>{product.name}</h3>
               <p>{product.description}</p>
-              <button className="product-cta">View Details</button>
+              <Link to={product.link} className="product-cta">
+                View Details
+              </Link>
             </div>
           </div>
         ))}
@@ -46,4 +59,4 @@ function Products() {
   );
 }
 
-export default Products; 
+export default Products;

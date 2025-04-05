@@ -1,29 +1,18 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+// import React, { createContext, useContext } from 'react';
 
-const ThemeContext = createContext();
+// const ThemeContext = createContext();
 
-export function ThemeProvider({ children }) {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
-  });
+// export function ThemeProvider({ children }) {
+//   const isDarkMode = true; // Hardcode dark mode
+//   const toggleTheme = () => {}; // Empty function (no toggling)
 
-  useEffect(() => {
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-  }, [isDarkMode]);
+//   return (
+//     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+//       {children}
+//     </ThemeContext.Provider>
+//   );
+// }
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  return (
-    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
-}
-
-export function useTheme() {
-  return useContext(ThemeContext);
-} 
+// export function useTheme() {
+//   return useContext(ThemeContext);
+// }

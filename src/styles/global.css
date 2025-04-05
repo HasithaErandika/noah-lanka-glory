@@ -11,9 +11,24 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--background);
-  color: var(--text-color);
+  background-color: #1a1a1a; /* Dark background */
+  color: #ffffff; /* Light text */
   line-height: 1.6;
+}
+
+/* CSS Variables for Dark Theme */
+:root {
+  --background: #1a1a1a; /* Dark gray background */
+  --text-color: #ffffff; /* White text */
+  --text-light: #b3b3b3; /* Lighter gray for secondary text */
+  --primary-color: #ffd700; /* Gold for links/buttons (business-like) */
+  --primary-dark: #e6c200; /* Slightly darker gold for hover */
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+  --container-width: 1200px;
+  --transition: all 0.3s ease;
 }
 
 /* App Container */
@@ -191,8 +206,3 @@ a:hover {
 .mt-4 {
   margin-top: var(--spacing-xl);
 }
-
-/* Theme Transition */
-.app {
-  transition: background-color 0.3s ease, color 0.3s ease;
-} 

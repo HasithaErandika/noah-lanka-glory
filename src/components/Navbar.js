@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../context/ThemeContext';
-import { motion } from 'framer-motion';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { isDarkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,7 +24,7 @@ function Navbar() {
   ];
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''} dark`}>
       <div className="nav-brand">
         <Link to="/">Noah Lanka Glory</Link>
       </div>
@@ -53,13 +50,6 @@ function Navbar() {
             </a>
           ))}
         </div>
-        <button 
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label={`Switch to ${isDarkMode ? 'light' : 'dark'} mode`}
-        >
-          <i className={`fas ${isDarkMode ? 'fa-sun' : 'fa-moon'}`}></i>
-        </button>
         <div className="hamburger" onClick={toggleMenu}>
           <span></span>
           <span></span>
@@ -70,4 +60,4 @@ function Navbar() {
   );
 }
 
-export default Navbar; 
+export default Navbar;

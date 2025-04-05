@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaSearch, FaFilter, FaShoppingCart, FaHeart, FaArrowRight } from 'react-icons/fa';
+import { FaSearch, FaShoppingCart, FaHeart, FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom'; // Assuming you're using React Router
 
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -8,42 +9,53 @@ const Products = () => {
 
   const categories = [
     'all',
-    'furniture',
-    'doors',
-    'windows',
-    'decor',
-    'outdoor'
+    'plywood',
+    'construction',
+    'packaging',
+    'furniture'
   ];
 
   const products = [
     {
       id: 1,
-      name: "Teak Wood Dining Table",
-      category: "furniture",
-      price: "1,200.00",
-      image: "/images/products/dining-table.jpg",
-      description: "Handcrafted teak wood dining table with elegant finish",
-      features: ["6-seater", "Premium teak wood", "Natural finish", "Custom size available"]
+      name: "Commercial Plywood",
+      category: "plywood",
+      price: "45.00",
+      image: "/images/products/commercial-plywood.jpg",
+      description: "Versatile and durable commercial plywood for construction and interior applications",
+      features: ["Premium quality", "Smooth finish", "High strength", "Multi-purpose"],
+      link: "/products/commercial-plywood"
     },
     {
       id: 2,
-      name: "Carved Wooden Door",
-      category: "doors",
-      price: "800.00",
-      image: "/images/products/carved-door.jpg",
-      description: "Beautifully carved wooden door with intricate details",
-      features: ["Solid wood", "Hand-carved design", "Weather-resistant", "Custom design available"]
+      name: "Packaging Plywood",
+      category: "packaging",
+      price: "35.00",
+      image: "/images/products/packaging-plywood.jpg",
+      description: "Sturdy and customizable solution for safe transportation and storage",
+      features: ["Heavy-duty", "Eco-friendly", "Custom sizes", "Reliable protection"],
+      link: "/products/packaging-plywood"
     },
     {
       id: 3,
-      name: "Modern Window Frame",
-      category: "windows",
-      price: "400.00",
-      image: "/images/products/window-frame.jpg",
-      description: "Contemporary wooden window frame with superior functionality",
-      features: ["Double-glazed", "Weather-sealed", "Modern design", "Multiple sizes"]
+      name: "Film-Faced Plywood",
+      category: "construction",
+      price: "55.00",
+      image: "/images/products/film-faced-plywood.jpg",
+      description: "Waterproof and durable plywood for concrete formwork and outdoor use",
+      features: ["Waterproof coating", "High durability", "Chemical resistant", "Shiny finish"],
+      link: "/products/film-faced-plywood"
     },
-    // Add more products as needed
+    {
+      id: 4,
+      name: "Laminated Plywood",
+      category: "furniture",
+      price: "30.00",
+      image: "/images/products/laminated-plywood.jpg",
+      description: "Affordable plywood with smooth finish for furniture and cabinetry",
+      features: ["Budget-friendly", "Stable", "Smooth surface", "Indoor use"],
+      link: "/products/laminated-plywood"
+    }
   ];
 
   const filteredProducts = products.filter(product => {
@@ -63,8 +75,8 @@ const Products = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1>Our Products</h1>
-          <p>Discover our collection of premium wooden products</p>
+          <h1>Noah Lanka Glory Products</h1>
+          <p>Versatile, Durable, and Affordable Solutions for Construction and Interior Applications</p>
         </motion.div>
       </section>
 
@@ -75,7 +87,7 @@ const Products = () => {
             <FaSearch />
             <input
               type="text"
-              placeholder="Search products..."
+              placeholder="Search Noah Lanka Glory products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -104,12 +116,7 @@ const Products = () => {
             animate="visible"
             variants={{
               hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.1
-                }
-              }
+              visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
             }}
           >
             {filteredProducts.map((product) => (
@@ -142,9 +149,9 @@ const Products = () => {
                   </div>
                   <div className="product-footer">
                     <span className="price">$ {product.price}</span>
-                    <button className="view-details">
+                    <Link to={product.link} className="view-details">
                       View Details <FaArrowRight />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -161,15 +168,15 @@ const Products = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <h2>Can't Find What You're Looking For?</h2>
-          <p>We offer custom woodworking services to meet your specific needs</p>
-          <button className="cta-button">
-            Request Custom Order <FaArrowRight />
-          </button>
+          <h2>Need a Custom Solution?</h2>
+          <p>Contact Noah Lanka Glory for personalized plywood solutions</p>
+          <Link to="/request-quote" className="cta-button">
+            Request Quote <FaArrowRight />
+          </Link>
         </motion.div>
       </section>
     </div>
   );
 };
 
-export default Products; 
+export default Products;

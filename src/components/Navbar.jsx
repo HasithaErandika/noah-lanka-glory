@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useTheme } from '../context/ThemeContext';
-import { FaSun, FaMoon, FaBars, FaTimes, FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { FaBars, FaTimes, FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 const Navbar = () => {
-  const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
@@ -33,7 +31,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''} dark`}>
       <div className="nav-brand">
         <Link to="/">Noah Lanka Glory</Link>
       </div>
@@ -66,14 +64,6 @@ const Navbar = () => {
           ))}
         </div>
 
-        <button 
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label="Toggle theme"
-        >
-          {theme === 'dark' ? <FaSun /> : <FaMoon />}
-        </button>
-
         <button
           className={`hamburger ${isMenuOpen ? 'active' : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -86,4 +76,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;
