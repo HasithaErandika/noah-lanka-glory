@@ -1,253 +1,205 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import { motion } from 'framer-motion';
-import './Home.css'; // Assuming CSS files are imported here or globally
+import { FaLeaf, FaTools, FaHandshake, FaAward } from 'react-icons/fa';
+import Section from '../components/common/Section/Section';
+import Card from '../components/common/Card/Card';
+import Button from '../components/common/Button/Button';
+import { FEATURES, PRODUCTS } from '../config/constants';
+import './Home.css';
 
-function Home() {
-  useEffect(() => {
-    // Add scroll animation class to elements when they come into view
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-        }
-      });
-    });
-
-    document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
-  const blogPosts = [
-    {
-      title: "A New Website Was Launched",
-      description: "“A new website has been launched, providing a fresh digital gateway to explore our extensive range of services and offerings.”",
-      link: "/blog/web2",
-    },
-    {
-      title: "Products From Noah Lanka Glory",
-      description: "“Discover an array of cutting-edge products meticulously crafted by Noah Lanka Glory to meet the diverse needs of modern industries.”",
-      link: "/blog/products",
-    },
-    {
-      title: "Our Latest Projects",
-      description: "“Our latest projects showcase our commitment to innovation and excellence, setting new standards in the industry.”",
-      link: "/blog/work2",
-    },
-  ];
-
+const Home = () => {
   return (
     <div className="home-page">
       {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-overlay"></div>
+      <Section
+        className="hero-section"
+        backgroundImage="/images/hero-bg.jpg"
+        overlay
+      >
         <motion.div
-          className="hero-content"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="hero-content"
         >
-          <h1 className="hero__title">Noah Lanka Glory (Pvt) Ltd</h1>
-          <p className="hero__subtitle">Excellence in Professional Woodworking</p>
+          <h1 className="hero-title">Premium Plywood Solutions</h1>
+          <p className="hero-subtitle">
+            Crafting excellence in every sheet, delivering quality that stands the test of time
+          </p>
           <div className="hero-buttons">
-            <Link to="/services" className="cta-button primary">
-              Explore Our Services
-            </Link>
-            <Link to="/contact" className="cta-button secondary">
-              Get in Touch
-            </Link>
-          </div>
-        </motion.div>
-        <div className="scroll-indicator">
-          <span>Scroll Down</span>
-          <div className="scroll-arrow"></div>
-        </div>
-      </section>
-
-      {/* A Bit About Us Section */}
-      <section className="section section--spacing-default">
-        <div className="section-header animate-on-scroll">
-          <h2 className="section__title">A Bit About Us</h2>
-          <p className="section__subtitle">
-            At Noah Lanka Glory, we combine craftsmanship with innovation to deliver exceptional woodworking solutions.
-          </p>
-        </div>
-        <motion.div
-          className="section__content animate-on-scroll"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <h3>Our Key Services</h3>
-          <p>
-            From bespoke furniture to stunning wooden interiors, we offer a spectrum of services tailored to elevate your space.
-          </p>
-        </motion.div>
-      </section>
-
-      {/* What We Do (Why Choose Us) Section */}
-      <section className="why-choose-us">
-        <div className="section-header animate-on-scroll">
-          <h2 className="section__title">What We Do</h2>
-          <p className="section__subtitle">Experience the Difference with Noah Lanka Glory</p>
-        </div>
-        <div className="features-grid">
-          <motion.div
-            className="feature-item animate-on-scroll"
-            whileHover={{ y: -5 }}
-            transition={{ duration: 0.3 }}
-          >
-            <i className="fas fa-medal"></i>
-            <h3>Quality Craftsmanship</h3>
-            <p>Every piece is crafted with attention to detail and precision.</p>
-          </motion.div>
-          <motion.div
-            className="feature-item animate-on-scroll"
-            whileHover={{ y: -5 }}
-            transition={{ duration: 0.3 }}
-          >
-            <i className="fas fa-leaf"></i>
-            <h3>Sustainable Materials</h3>
-            <p>We use eco-friendly materials and sustainable practices.</p>
-          </motion.div>
-          <motion.div
-            className="feature-item animate-on-scroll"
-            whileHover={{ y: -5 }}
-            transition={{ duration: 0.3 }}
-          >
-            <i className="fas fa-clock"></i>
-            <h3>Timely Delivery</h3>
-            <p>We respect deadlines and deliver on our promises.</p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Featured Services Preview */}
-      <section className="services-preview">
-        <div className="section-header animate-on-scroll">
-          <h2 className="section__title">Our Key Services</h2>
-          <p className="section__subtitle">Discover Our Comprehensive Range of Woodworking Solutions</p>
-        </div>
-        <div className="services-grid">
-          <motion.div
-            className="service-card animate-on-scroll"
-            whileHover={{ y: -10 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="service-icon">
-              <i className="fas fa-couch"></i>
-            </div>
-            <h3>Custom Furniture</h3>
-            <p>Handcrafted furniture tailored to your specific needs and preferences.</p>
-            <Link to="/services" className="service-link">
-              Learn More →
-            </Link>
-          </motion.div>
-          <motion.div
-            className="service-card animate-on-scroll"
-            whileHover={{ y: -10 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="service-icon">
-              <i className="fas fa-home"></i>
-            </div>
-            <h3>Wooden Interiors</h3>
-            <p>Beautiful wooden interior solutions for homes and businesses.</p>
-            <Link to="/services" className="service-link">
-              Learn More →
-            </Link>
-          </motion.div>
-          <motion.div
-            className="service-card animate-on-scroll"
-            whileHover={{ y: -10 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="service-icon">
-              <i className="fas fa-paint-brush"></i>
-            </div>
-            <h3>Wooden Artifacts</h3>
-            <p>Unique wooden artifacts and decorative pieces.</p>
-            <Link to="/services" className="service-link">
-              Learn More →
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CEO Message Section */}
-      <section className="section section--spacing-compact section--centered">
-        <motion.div
-          className="section__content animate-on-scroll"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="ceo-quote">
-            "Exciting times ahead as we expand our horizons, offering a spectrum of services designed to elevate your experience and exceed expectations."
-          </p>
-          <p className="ceo-name">Suraj Costa</p>
-          <p className="ceo-title">CEO</p>
-        </motion.div>
-      </section>
-
-      {/* Latest from the Blog Section */}
-      <section className="section section--spacing-large">
-        <div className="section-header animate-on-scroll">
-          <h2 className="section__title">Latest from the Blog</h2>
-          <p className="section__subtitle">Stay Updated with Noah Lanka Glory</p>
-        </div>
-        <div className="services-grid">
-          {blogPosts.map((post, index) => (
-            <motion.div
-              key={index}
-              className="service-card animate-on-scroll"
-              whileHover={{ y: -10 }}
-              transition={{ duration: 0.3 }}
+            <Button
+              variant="primary"
+              size="large"
+              onClick={() => window.location.href = '/products'}
             >
-              <h3>{post.title}</h3>
-              <p>{post.description}</p>
-              <Link to={post.link} className="service-link">
-                Read More →
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* What Our Clients Say Section */}
-      <section className="section section--spacing-default section--centered">
-        <div className="section-header animate-on-scroll">
-          <h2 className="section__title">What Our Clients Say</h2>
-          <p className="section__subtitle">Voices of Satisfaction</p>
-        </div>
-        <motion.div
-          className="section__content animate-on-scroll"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="feature-item">
-            <p>
-              "Noah Lanka Glory transformed our space with unparalleled craftsmanship and attention to detail."
-            </p>
-            <p className="client-name"><strong>- Happy Client</strong></p>
+              Explore Products
+            </Button>
+            <Button
+              variant="secondary"
+              size="large"
+              onClick={() => window.location.href = '/contact'}
+            >
+              Contact Us
+            </Button>
           </div>
         </motion.div>
-      </section>
+      </Section>
 
-      {/* Featured Products Section */}
-      <section className="featured-products">
-        <div className="section-header animate-on-scroll">
-          <h2 className="section__title">Featured Products</h2>
-          <p className="section__subtitle">Explore Our Latest Woodworking Creations</p>
+      {/* Features Section */}
+      <Section className="features-section">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="section-header"
+          >
+            <h2>Why Choose Us</h2>
+            <p>Excellence in every aspect of plywood manufacturing</p>
+          </motion.div>
+          <div className="features-grid">
+            {FEATURES.map((feature, index) => (
+              <Card
+                key={feature.id}
+                className="feature-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="feature-icon">
+                  {feature.icon === 'leaf' && <FaLeaf />}
+                  {feature.icon === 'tools' && <FaTools />}
+                  {feature.icon === 'handshake' && <FaHandshake />}
+                  {feature.icon === 'award' && <FaAward />}
+                </div>
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+              </Card>
+            ))}
+          </div>
         </div>
-        <div className="products-slider">
-          {/* Add product slider here */}
+      </Section>
+
+      {/* Products Section */}
+      <Section className="products-section bg-[#2a2a2a]">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="section-header"
+          >
+            <h2>Our Products</h2>
+            <p>Discover our range of premium plywood solutions</p>
+          </motion.div>
+          <div className="products-grid">
+            {PRODUCTS.map((product, index) => (
+              <Card
+                key={product.id}
+                className="product-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="product-image">
+                  <img src={product.image} alt={product.title} />
+                </div>
+                <div className="product-content">
+                  <h3>{product.title}</h3>
+                  <p>{product.description}</p>
+                  <Button
+                    variant="primary"
+                    onClick={() => window.location.href = `/products#${product.id}`}
+                  >
+                    Learn More
+                  </Button>
+                </div>
+              </Card>
+            ))}
+          </div>
         </div>
-      </section>
+      </Section>
+
+      {/* Process Section */}
+      <Section className="process-section">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="section-header"
+          >
+            <h2>Our Process</h2>
+            <p>How we ensure quality in every step</p>
+          </motion.div>
+          <div className="process-timeline">
+            {[
+              {
+                step: '01',
+                title: 'Material Selection',
+                description: 'Carefully selecting the finest raw materials'
+              },
+              {
+                step: '02',
+                title: 'Precision Manufacturing',
+                description: 'State-of-the-art production process'
+              },
+              {
+                step: '03',
+                title: 'Quality Control',
+                description: 'Rigorous testing and inspection'
+              },
+              {
+                step: '04',
+                title: 'Delivery',
+                description: 'Safe and timely delivery to your location'
+              }
+            ].map((process, index) => (
+              <motion.div
+                key={index}
+                className="process-step"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="step-number">{process.step}</div>
+                <h3>{process.title}</h3>
+                <p>{process.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* CTA Section */}
+      <Section className="cta-section bg-[#2a2a2a]">
+        <div className="max-w-7xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2>Ready to Start Your Project?</h2>
+            <p>Let's create something exceptional together</p>
+            <Button
+              variant="primary"
+              size="large"
+              onClick={() => window.location.href = '/contact'}
+            >
+              Get in Touch
+            </Button>
+          </motion.div>
+        </div>
+      </Section>
     </div>
   );
-}
+};
 
 export default Home;

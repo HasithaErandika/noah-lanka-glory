@@ -1,50 +1,73 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 import './Section.css';
 
 const Section = ({
+  children,
   title,
   subtitle,
-  children,
-  centered = false,
-  background = 'default',
-  spacing = 'default',
   className = '',
+  variant = 'default',
+  background = 'transparent',
+  padding = 'large',
   ...props
 }) => {
-  const sectionClasses = [
-    'section',
-    `section--bg-${background}`,
-    `section--spacing-${spacing}`,
-    centered ? 'section--centered' : '',
-    className
-  ].filter(Boolean).join(' ');
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const paddingVariants = {
+    small: '2rem 0',
+    medium: '4rem 0',
+    large: '6rem 0'
+  };
 
   return (
-    <section className={sectionClasses} {...props}>
-      <div className="section__container container">
+    <motion.section
+      className={`section section--${variant} ${className}`}
+      style={{
+        background,
+        padding: paddingVariants[padding]
+      }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={sectionVariants}
+      {...props}
+    >
+      <div className="section-container">
         {(title || subtitle) && (
-          <div className="section__header">
-            {title && <h2 className="section__title">{title}</h2>}
-            {subtitle && <p className="section__subtitle">{subtitle}</p>}
-          </div>
+          <motion.div 
+            className="section-header"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 }
+            }}
+          >
+            {title && <h2 className="section-title">{title}</h2>}
+            {subtitle && <p className="section-subtitle">{subtitle}</p>}
+          </motion.div>
         )}
-        <div className="section__content">
+        <motion.div 
+          className="section-content"
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0 }
+          }}
+        >
           {children}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
-};
-
-Section.propTypes = {
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
-  children: PropTypes.node,
-  centered: PropTypes.bool,
-  background: PropTypes.oneOf(['default', 'primary', 'secondary', 'light', 'dark']),
-  spacing: PropTypes.oneOf(['default', 'compact', 'large']),
-  className: PropTypes.string,
 };
 
 export default Section; 

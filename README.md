@@ -1,169 +1,95 @@
-# Noah Lanka Glory (Pvt) Ltd Website
+# Noah Lanka Glory - Premium Plywood Solutions
 
-A modern, responsive website for Noah Lanka Glory (Pvt) Ltd, showcasing their professional woodworking services and products.
+A modern, responsive website for Noah Lanka Glory, a leading manufacturer of premium plywood solutions in Sri Lanka.
 
 ## 🚀 Features
 
-- **Modern Design**: Clean and professional layout with smooth animations
-- **Responsive**: Fully responsive design that works on all devices
-- **Interactive**: Engaging user interface with hover effects and transitions
-- **Performance**: Optimized for fast loading and smooth scrolling
-- **Accessibility**: Built with accessibility best practices
+- Modern, responsive design with dark/light theme support
+- Smooth animations and transitions using Framer Motion
+- Optimized performance with lazy loading
+- SEO-friendly structure
+- Mobile-first approach
+- Interactive UI components
+- Social media integration
+- Contact form with validation
 
-## 🛠️ Technologies Used
+## 🛠️ Tech Stack
 
-- React.js
-- React Router
+- React 18
+- React Router v6
 - Framer Motion
-- Font Awesome
-- CSS3 (with CSS Variables)
-- HTML5
+- CSS3 with CSS Variables
+- Font Awesome Icons
+- Google Fonts
 
-## 📦 Installation
+## 📦 Project Structure
+
+```
+src/
+├── assets/           # Static assets (images, fonts)
+├── components/       # React components
+│   ├── common/      # Reusable components
+│   ├── layout/      # Layout components
+│   └── features/    # Feature-specific components
+├── config/          # Configuration files
+├── context/         # React context providers
+├── hooks/           # Custom React hooks
+├── pages/           # Page components
+├── services/        # API services
+├── styles/          # Global styles and themes
+└── utils/           # Utility functions
+```
+
+## 🚀 Getting Started
 
 1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/noah-lanka-glory.git
-```
+   ```bash
+   git clone https://github.com/yourusername/noah-lanka-glory.git
+   ```
 
-2. Navigate to the project directory:
-```bash
-cd noah-lanka-glory
-```
+2. Install dependencies:
+   ```bash
+   cd noah-lanka-glory
+   npm install
+   ```
 
-3. Install dependencies:
-```bash
-npm install
-```
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
-4. Start the development server:
-```bash
-npm start
-```
+4. Build for production:
+   ```bash
+   npm run build
+   ```
 
-5. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🎨 Theme Customization
 
-## 🏗️ Project Structure
-
-```
-noah-lanka-glory/
-├── public/
-├── src/
-│   ├── components/
-│   │   ├── common/
-│   │   │    ├── Button/
-│   │   │    │     ├── Button.css
-│   │   │    │     └── Button.jsx
-│   │   │    ├── Card/
-│   │   │    │     ├── Card.css
-│   │   │    │     └── Card.jsx
-│   │   │    ├── Hero/
-│   │   │    │     ├── Hero.css
-│   │   │    │     └── Hero.jsx
-│   │   │    └── Section/
-│   │   │    │     ├── Section.css
-│   │   │    │     └── Section.jsx
-│   │   ├── About.js
-│   │   ├── Contact.js
-│   │   ├── Footer.jsx
-│   │   ├── Home.js
-│   │   ├── Navbar.js
-│   │   ├── Navbar.jsx
-│   │   ├── Products.js
-│   │   ├── Services.js
-│   │   └── Services.jsx
-│   ├── context/
-│   │   └── ThemeContext.js
-│   ├── pages/
-│   │   ├── About.css
-│   │   ├── Contact.css
-│   │   ├── Home.css
-│   │   └── Products.css
-│   ├── styles/
-│   │   ├── About.css
-│   │   ├── Animations.css
-│   │   ├── Contact.css
-│   │   ├── global.css
-│   │   ├── Home.css
-│   │   ├── Products.css
-│   │   ├── Services.css
-│   │   └── variables.css
-│   ├── App.css
-│   ├── App.js
-│   ├── App.jsx
-│   ├── App.test.js
-│   ├── index.css
-│   ├── index.js
-│   ├── Logo.svg
-│   ├── reportWEBVitals.js
-│   └── setupTests.js
-├── .gitignore
-├── package-lock.json
-├── package.json
-└── README.md
-```
-
-## 🎨 Design Features
-
-### Navigation
-- Fixed navigation bar with smooth transitions
-- Mobile-friendly hamburger menu
-- Active link indicators
-- Smooth scroll behavior
-
-### Home Page
-- Hero section with parallax effect
-- Animated service cards
-- Featured products section
-- "Why Choose Us" section with icons
-- Scroll-triggered animations
-
-### Responsive Design
-- Mobile-first approach
-- Breakpoints for tablets and desktops
-- Flexible grid system
-- Adaptive typography
-
-## 🔧 Customization
-
-### Colors
-The website uses CSS variables for easy color customization. Edit the following variables in `src/App.css`:
+The project uses CSS variables for theming. You can customize the theme by modifying the variables in `src/styles/global.css`:
 
 ```css
 :root {
-  --primary-color: #e67e22;
-  --secondary-color: #2c3e50;
-  --accent-color: #d35400;
-  --text-color: #333;
-  --light-bg: #f9f9f9;
-  --white: #ffffff;
+  --primary-color: #d4a017;
+  --primary-light: #e6b84c;
+  --primary-dark: #b8860b;
+  /* ... other variables ... */
 }
 ```
 
-### Images
-Replace the hero background image in `src/App.css`:
-```css
-.hero {
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('your-image-url');
-}
-```
+## 📱 Responsive Design
 
-## 📱 Browser Support
+The website is fully responsive and optimized for:
+- Mobile devices (320px and up)
+- Tablets (768px and up)
+- Desktops (1024px and up)
+- Large screens (1440px and up)
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Opera (latest)
+## 🔧 Available Scripts
 
-## 🚀 Deployment
-
-1. Build the project:
-```bash
-npm run build
-```
-
-2. Deploy the `build` folder to your hosting service.
+- `npm start` - Runs the app in development mode
+- `npm test` - Launches the test runner
+- `npm run build` - Builds the app for production
+- `npm run eject` - Ejects from Create React App
 
 ## 📄 License
 
@@ -179,10 +105,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-For any queries or support, please contact:
+For any queries, please contact:
 - Email: info@noahlankaglory.com
-- Phone: +94 XX XXX XXXX
-- Address: [Your Company Address]
+- Phone: +94 11 218 8919
+- Address: No.169/A/2 Bope Watta Rd, Padukka, Sri Lanka
 
 ## 🙏 Acknowledgments
 

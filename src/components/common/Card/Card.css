@@ -27,3 +27,91 @@
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Enhanced shadow for hover */
 }
+
+.custom-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: var(--card-bg);
+  padding: 1.5rem;
+}
+
+.card-header {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-content {
+  margin-bottom: 1rem;
+}
+
+.card-footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.card-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.custom-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+/* Card variants */
+.custom-card[data-variant="elevated"] {
+  box-shadow: var(--shadow);
+}
+
+.custom-card[data-variant="outlined"] {
+  border: 2px solid var(--primary-color);
+  background: transparent;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .custom-card {
+    padding: 1rem;
+  }
+
+  .card-image {
+    height: 150px;
+  }
+}
+
+/* Animation classes */
+.card-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.card-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.card-exit {
+  opacity: 1;
+}
+
+.card-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}

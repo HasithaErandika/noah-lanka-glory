@@ -1,214 +1,177 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
-import '../styles/Contact.css'; // Correct path based on your structure
+import React, { useEffect } from 'react';
+import { FaWhatsapp, FaFacebookF, FaMapMarkerAlt, FaPhone, FaClock } from 'react-icons/fa';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
-function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
+const Contact = () => {
+  useEffect(() => {
+    // Initialize Map
+    const map = L.map('map').setView([6.824427, 80.143878], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+    L.marker([6.824427, 80.143878]).addTo(map)
+      .bindPopup('Noah Lanka Glory (Pvt) Ltd<br>No.169/A/2 Bope Watta Rd, Padukka')
+      .openPopup();
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+    return () => {
+      map.remove();
+    };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setFormData({ name: '', email: '', phone: '', message: '' });
+    alert('Thank you for your message! We will get back to you soon.');
+    e.target.reset();
   };
 
-  const contactInfo = [
-    {
-      icon: <FaMapMarkerAlt />,
-      title: "Address",
-      content: ["123 Main Street", "Colombo, Sri Lanka"],
-    },
-    {
-      icon: <FaPhone />,
-      title: "Phone",
-      content: ["+94 12 345 6789"],
-    },
-    {
-      icon: <FaEnvelope />,
-      title: "Email",
-      content: ["info@noahlankaglory.com"],
-    },
-    {
-      icon: <FaClock />,
-      title: "Business Hours",
-      content: ["Monday - Friday: 9:00 AM - 6:00 PM", "Saturday: 9:00 AM - 1:00 PM", "Sunday: Closed"],
-    },
-  ];
-
-  const socialLinks = [
-    { icon: <FaFacebook />, url: "https://facebook.com", label: "Facebook" },
-    { icon: <FaInstagram />, url: "https://instagram.com", label: "Instagram" },
-    { icon: <FaTwitter />, url: "https://twitter.com", label: "Twitter" },
-  ];
-
   return (
-    <div className="contact-page">
-      {/* Header Section */}
-      <section className="section section--spacing-compact section--centered">
-        <motion.div
-          className="page-header"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="section__title">Contact Us</h1>
-          <p className="section__subtitle">Get in Touch with Noah Lanka Glory</p>
-        </motion.div>
-      </section>
+    <section id="contact" className="section bg-[#2a2a2a] py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Contact Us</h2>
+          <div className="w-24 h-1 bg-[#d4a017] mx-auto rounded-full"></div>
+        </div>
 
-      <div className="contact-container">
-        {/* Contact Information */}
-        <section className="contact-info-section">
-          <motion.div
-            className="card card--elevated contact-info"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2>Contact Information</h2>
-            <div className="info-grid">
-              {contactInfo.map((info, index) => (
-                <div key={index} className="info-item">
-                  <div className="info-icon">{info.icon}</div>
-                  <div className="info-details">
-                    <h3>{info.title}</h3>
-                    {info.content.map((line, i) => (
-                      <p key={i}>{line}</p>
-                    ))}
-                  </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+          {/* Contact Info */}
+          <div className="bg-[#1a1a1a] p-8 rounded-xl shadow-lg">
+            <h3 className="text-2xl font-semibold mb-8 text-white text-center">Get in Touch</h3>
+            
+            {/* Contact Details */}
+            <div className="space-y-6">
+              <div className="flex items-start space-x-4">
+                <div className="bg-[#2a2a2a] p-3 rounded-lg">
+                  <FaMapMarkerAlt className="text-[#d4a017] text-xl" />
                 </div>
-              ))}
-            </div>
-          </motion.div>
-        </section>
+                <div>
+                  <h4 className="text-white font-medium mb-1">Address</h4>
+                  <p className="text-gray-300">No.169/A/2 Bope Watta Rd, Padukka, Sri Lanka</p>
+                </div>
+              </div>
 
-        {/* Contact Form Section */}
-        <section className="contact-form-section">
-          <motion.div
-            className="card card--elevated contact-form"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2>Send Us a Message</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="name">Name</label>
+              <div className="flex items-start space-x-4">
+                <div className="bg-[#2a2a2a] p-3 rounded-lg">
+                  <FaPhone className="text-[#d4a017] text-xl" />
+                </div>
+                <div>
+                  <h4 className="text-white font-medium mb-1">Phone</h4>
+                  <a href="tel:+94112188919" className="text-gray-300 hover:text-[#d4a017] transition-colors">
+                    +94 11 218 8919
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="bg-[#2a2a2a] p-3 rounded-lg">
+                  <FaClock className="text-[#d4a017] text-xl" />
+                </div>
+                <div>
+                  <h4 className="text-white font-medium mb-2">Business Hours</h4>
+                  <ul className="space-y-2 text-gray-300">
+                    <li className="flex justify-between">
+                      <span>Monday–Friday:</span>
+                      <span>7:30 AM–6:00 PM</span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span>Saturday:</span>
+                      <span>8:00 AM–3:00 PM</span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span>Sunday:</span>
+                      <span>9:00 AM–1:00 PM</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Map */}
+            <div className="mt-8">
+              <div id="map" className="h-[300px] w-full rounded-lg shadow-lg"></div>
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="bg-[#1a1a1a] p-8 rounded-xl shadow-lg">
+            <h3 className="text-2xl font-semibold mb-8 text-white text-center">Send a Message</h3>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="relative">
+                <label htmlFor="name" className="block text-sm font-medium mb-2 text-white">
+                  Name
+                </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
+                  className="w-full p-4 bg-[#2a2a2a] border border-[#404040] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4a017] focus:border-transparent text-white transition-all"
+                  placeholder="Your name"
                   required
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
+              <div className="relative">
+                <label htmlFor="email" className="block text-sm font-medium mb-2 text-white">
+                  Email
+                </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  value={formData.email}
-                  onChange={handleChange}
+                  className="w-full p-4 bg-[#2a2a2a] border border-[#404040] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4a017] focus:border-transparent text-white transition-all"
+                  placeholder="Your email"
                   required
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="phone">Phone</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
+              <div className="relative">
+                <label htmlFor="message" className="block text-sm font-medium mb-2 text-white">
+                  Message
+                </label>
                 <textarea
                   id="message"
                   name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
                   rows="5"
+                  className="w-full p-4 bg-[#2a2a2a] border border-[#404040] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4a017] focus:border-transparent text-white transition-all resize-none"
+                  placeholder="Your message"
+                  required
                 ></textarea>
               </div>
-              <button type="submit" className="button button--primary button--medium">
+              <button
+                type="submit"
+                className="w-full bg-[#d4a017] text-[#1a1a1a] px-8 py-4 rounded-lg font-medium transition-all hover:bg-[#b8860b] hover:transform hover:-translate-y-0.5 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#d4a017] focus:ring-offset-2 focus:ring-offset-[#1a1a1a]"
+              >
                 Send Message
               </button>
             </form>
-          </motion.div>
-        </section>
 
-        {/* Map Section */}
-        <section className="map-section">
-          <motion.div
-            className="card card--elevated map-container"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.902976920161!2d79.8586933152596!3d6.90220359500944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae259631bc3b015%3A0x746caa0c3e3c541d!2sColombo%2C%20Sri%20Lanka!5e0!3m2!1sen!2sus!4v1634567890123!5m2!1sen!2sus"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              title="Noah Lanka Glory Location"
-            ></iframe>
-          </motion.div>
-        </section>
-
-        {/* Social Links */}
-        <section className="social-section">
-          <motion.div
-            className="card card--elevated social-container"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3>Follow Us</h3>
-            <div className="social-links">
-              {socialLinks.map((link, index) => (
-                <motion.a
-                  key={index}
-                  href={link.url}
+            {/* Social Links */}
+            <div className="mt-8 pt-8 border-t border-[#404040]">
+              <h4 className="text-white font-medium mb-4 text-center">Connect With Us</h4>
+              <div className="flex justify-center space-x-4">
+                <a
+                  href="https://wa.me/+94112188919"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="social-link"
-                  whileHover={{ scale: 1.2, color: "var(--primary-color)" }}
-                  transition={{ duration: 0.3 }}
-                  aria-label={link.label}
+                  className="bg-[#2a2a2a] p-3 rounded-lg text-white hover:text-[#d4a017] hover:bg-[#333333] transition-all"
                 >
-                  {link.icon}
-                </motion.a>
-              ))}
+                  <FaWhatsapp className="text-xl" />
+                </a>
+                <a
+                  href="https://facebook.com/noahlankaglory"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#2a2a2a] p-3 rounded-lg text-white hover:text-[#d4a017] hover:bg-[#333333] transition-all"
+                >
+                  <FaFacebookF className="text-xl" />
+                </a>
+              </div>
             </div>
-          </motion.div>
-        </section>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
-}
+};
 
 export default Contact;

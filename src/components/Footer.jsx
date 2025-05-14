@@ -1,94 +1,131 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaFacebook, FaInstagram, FaTwitter, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaPhone, FaMapMarkerAlt, FaClock, FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import './Footer.css';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const quickLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/services', label: 'Services' },
-    { path: '/products', label: 'Products' },
-    { path: '/about', label: 'About' },
-    { path: '/contact', label: 'Contact' }
-  ];
+  const footerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.2
+      }
+    }
+  };
 
-  const services = [
-    'Custom Furniture',
-    'Interior Woodwork',
-    'Door & Window Crafting',
-    'Restoration Services'
-  ];
-
-  const socialLinks = [
-    { icon: <FaFacebook />, url: 'https://facebook.com', label: 'Facebook' },
-    { icon: <FaInstagram />, url: 'https://instagram.com', label: 'Instagram' },
-    { icon: <FaTwitter />, url: 'https://twitter.com', label: 'Twitter' }
-  ];
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
 
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <div className="footer-section">
-          <h3>About Us</h3>
-          <p>Noah Lanka Glory (Pvt) Ltd is a premier woodworking service company dedicated to crafting excellence through precision, passion, and expertise in every wooden masterpiece.</p>
-          <div className="footer-social">
-            {socialLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.label}
-              >
-                {link.icon}
+    <motion.footer 
+      className="footer"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={footerVariants}
+    >
+      <div className="footer-container">
+        <div className="footer-grid">
+          {/* Company Info */}
+          <motion.div className="footer-section" variants={itemVariants}>
+            <h3>Noah Lanka Glory</h3>
+            <p className="company-description">
+              Leading manufacturer of premium plywood solutions in Sri Lanka, 
+              committed to quality and sustainability.
+            </p>
+            <div className="social-links">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <FaFacebook />
               </a>
-            ))}
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <FaInstagram />
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <FaLinkedin />
+              </a>
+              <a href="https://wa.me/94112188919" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                <FaWhatsapp />
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Contact Info */}
+          <motion.div className="footer-section" variants={itemVariants}>
+            <h3>Contact Us</h3>
+            <div className="contact-info">
+              <div className="contact-item">
+                <FaMapMarkerAlt className="contact-icon" />
+                <div>
+                  <h4>Address</h4>
+                  <p>No.169/A/2 Bope Watta Rd,<br />Padukka, Sri Lanka</p>
+                </div>
+              </div>
+              <div className="contact-item">
+                <FaPhone className="contact-icon" />
+                <div>
+                  <h4>Phone</h4>
+                  <p>+94 11 218 8919</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Business Hours */}
+          <motion.div className="footer-section" variants={itemVariants}>
+            <h3>Business Hours</h3>
+            <div className="business-hours">
+              <div className="hours-item">
+                <span className="day">Monday–Friday</span>
+                <span className="time">7:30 AM–6:00 PM</span>
+              </div>
+              <div className="hours-item">
+                <span className="day">Saturday</span>
+                <span className="time">8:00 AM–3:00 PM</span>
+              </div>
+              <div className="hours-item">
+                <span className="day">Sunday</span>
+                <span className="time">9:00 AM–1:00 PM</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Quick Links */}
+          <motion.div className="footer-section" variants={itemVariants}>
+            <h3>Quick Links</h3>
+            <ul className="quick-links">
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/products">Products</a></li>
+              <li><a href="/services">Services</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/privacy">Privacy Policy</a></li>
+              <li><a href="/terms">Terms & Conditions</a></li>
+            </ul>
+          </motion.div>
+        </div>
+
+        {/* Bottom Bar */}
+        <motion.div 
+          className="footer-bottom"
+          variants={itemVariants}
+        >
+          <div className="footer-bottom-content">
+            <p>&copy; {currentYear} Noah Lanka Glory. All rights reserved.</p>
+            <div className="footer-bottom-links">
+              <a href="/privacy">Privacy Policy</a>
+              <span className="separator">|</span>
+              <a href="/terms">Terms & Conditions</a>
+            </div>
           </div>
-        </div>
-
-        <div className="footer-section">
-          <h3>Quick Links</h3>
-          <ul>
-            {quickLinks.map((link) => (
-              <li key={link.path}>
-                <Link to={link.path}>{link.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="footer-section">
-          <h3>Our Services</h3>
-          <ul>
-            {services.map((service, index) => (
-              <li key={index}>
-                <Link to="/services">{service}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="footer-section">
-          <h3>Contact Info</h3>
-          <ul className="contact-info">
-            <li>
-              <FaPhone /> <a href="tel:+94123456789">+94 12 345 6789</a>
-            </li>
-            <li>
-              <FaEnvelope /> <a href="mailto:info@noahlankaglory.com">info@noahlankaglory.com</a>
-            </li>
-            <li>
-              <FaMapMarkerAlt /> 123 Main Street, Colombo, Sri Lanka
-            </li>
-          </ul>
-        </div>
+        </motion.div>
       </div>
-
-      <div className="footer-bottom">
-        <p>&copy; {currentYear} Noah Lanka Glory (Pvt) Ltd. All rights reserved.</p>
-      </div>
-    </footer>
+    </motion.footer>
   );
 };
 

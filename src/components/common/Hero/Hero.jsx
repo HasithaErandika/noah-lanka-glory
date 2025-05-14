@@ -1,38 +1,96 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import './Hero.css';
 
 const Hero = ({
   title,
   subtitle,
-  children,
   backgroundImage,
   overlay = true,
-  centered = true,
-  fullHeight = false,
+  height = 'full',
+  align = 'center',
   className = '',
+  children,
   ...props
 }) => {
-  const heroClasses = [
-    'hero',
-    centered ? 'hero--centered' : '',
-    fullHeight ? 'hero--full-height' : '',
-    overlay ? 'hero--overlay' : '',
-    className
-  ].filter(Boolean).join(' ');
+  const heightVariants = {
+    small: '50vh',
+    medium: '70vh',
+    full: '100vh'
+  };
 
-  const style = backgroundImage ? {
-    backgroundImage: `url(${backgroundImage})`,
-  } : {};
+  const alignVariants = {
+    left: 'flex-start',
+    center: 'center',
+    right: 'flex-end'
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6
+      }
+    }
+  };
 
   return (
-    <section className={heroClasses} style={style} {...props}>
-      <div className="hero__content container">
-        {title && <h1 className="hero__title">{title}</h1>}
-        {subtitle && <p className="hero__subtitle">{subtitle}</p>}
-        {children}
-      </div>
-    </section>
+    <motion.div
+      className={`hero ${className}`}
+      style={{
+        height: heightVariants[height],
+        backgroundImage: backgroundImage ? `url(${backgroundImage})` : 'none',
+        alignItems: alignVariants[align]
+      }}
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      {...props}
+    >
+      {overlay && <div className="hero-overlay" />}
+      <motion.div 
+        className="hero-content"
+        variants={itemVariants}
+      >
+        {title && (
+          <motion.h1 
+            className="hero-title"
+            variants={itemVariants}
+          >
+            {title}
+          </motion.h1>
+        )}
+        {subtitle && (
+          <motion.p 
+            className="hero-subtitle"
+            variants={itemVariants}
+          >
+            {subtitle}
+          </motion.p>
+        )}
+        {children && (
+          <motion.div 
+            className="hero-actions"
+            variants={itemVariants}
+          >
+            {children}
+          </motion.div>
+        )}
+      </motion.div>
+    </motion.div>
   );
 };
 
@@ -42,8 +100,8 @@ Hero.propTypes = {
   children: PropTypes.node,
   backgroundImage: PropTypes.string,
   overlay: PropTypes.bool,
-  centered: PropTypes.bool,
-  fullHeight: PropTypes.bool,
+  height: PropTypes.oneOf(['small', 'medium', 'full']),
+  align: PropTypes.oneOf(['left', 'center', 'right']),
   className: PropTypes.string,
 };
 

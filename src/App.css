@@ -1,21 +1,21 @@
 /* Theme Variables */
 :root {
   /* Colors */
-  --primary-color: #FFD700; /* Gold for accents */
-  --primary-light: #FFEA80; /* Lighter gold */
-  --primary-dark: #E6C200; /* Darker gold for hover */
-  --secondary-color: #2C3E50; /* Deep blue-gray */
-  --accent-color: #FFD700; /* Matches primary */
-  --text-color: #FFFFFF; /* Pure white for elegance */
-  --text-light: #E0E0E0; /* Soft white for secondary text */
-  --background: #121212; /* Elegant black */
-  --background-light: #1E1E1E; /* Slightly lighter black */
-  --card-bg: #1E1E1E; /* Matches background-light */
-  --border-color: #3A3A3A; /* Subtle gray */
-  --hover-bg: #2A2A2A; /* Darker hover background */
-  --shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-  --shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.4);
-  --transition: all 0.3s ease;
+  --primary-color: #d4a017; /* Gold */
+  --primary-light: #e6b84c; /* Lighter gold */
+  --primary-dark: #b8860b; /* Darker gold */
+  --secondary-color: #2a2a2a; /* Dark gray */
+  --accent-color: #d4a017; /* Gold accent */
+  --text-color: #ffffff; /* White text */
+  --text-light: #e0e0e0; /* Light gray text */
+  --background: #1a1a1a; /* Dark background */
+  --background-light: #2a2a2a; /* Slightly lighter dark */
+  --card-bg: #2a2a2a; /* Card background */
+  --border-color: #404040; /* Dark border */
+  --hover-bg: #333333; /* Hover background */
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.4);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Global Styles */
@@ -26,7 +26,7 @@
 }
 
 body {
-  font-family: 'Lora', serif; /* Elegant body font */
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   line-height: 1.6;
   color: var(--text-color);
   background-color: var(--background);
@@ -41,7 +41,7 @@ body {
 
 main {
   flex: 1;
-  padding-top: 80px; /* Space for fixed navbar */
+  padding-top: 80px;
 }
 
 /* Navigation */
@@ -60,14 +60,15 @@ main {
 }
 
 .navbar.scrolled {
-  background-color: rgba(30, 30, 30, 0.9);
+  background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
 }
 
 .nav-brand {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: -0.5px;
 }
 
 .nav-brand a {
@@ -83,27 +84,33 @@ main {
 .nav-links {
   display: flex;
   align-items: center;
+  gap: 2rem;
 }
 
 .nav-links a {
-  margin-left: 2rem;
   text-decoration: none;
   color: var(--text-color);
-  font-family: 'Lora', serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
+  font-size: 0.95rem;
   transition: var(--transition);
   position: relative;
+  padding: 0.5rem 0;
 }
 
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: -5px;
+  bottom: 0;
   left: 0;
   width: 0;
   height: 2px;
   background-color: var(--primary-color);
   transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
 }
 
 .nav-links a:hover::after {
@@ -114,26 +121,28 @@ main {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .social-links {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .social-link {
   color: var(--text-color);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   transition: var(--transition);
   padding: 0.5rem;
-  border-radius: 50%;
+  border-radius: 8px;
   background-color: var(--hover-bg);
 }
 
 .social-link:hover {
   color: var(--primary-color);
   transform: translateY(-2px);
+  background-color: var(--background-light);
+  box-shadow: var(--shadow);
 }
 
 /* Hamburger Menu */
@@ -145,11 +154,12 @@ main {
 
 .hamburger span {
   display: block;
-  width: 25px;
-  height: 3px;
+  width: 24px;
+  height: 2px;
   background-color: var(--text-color);
   margin: 5px 0;
   transition: var(--transition);
+  border-radius: 2px;
 }
 
 .hamburger.active span:nth-child(1) {
@@ -175,12 +185,13 @@ main {
     top: 80px;
     left: 0;
     width: 100%;
-    background-color: var(--card-bg);
-    padding: 1rem;
+    background-color: var(--background-light);
+    padding: 1.5rem;
     display: none;
     flex-direction: column;
     align-items: center;
     box-shadow: var(--shadow);
+    gap: 1rem;
   }
 
   .nav-links.active {
@@ -189,8 +200,109 @@ main {
 
   .nav-links a {
     margin: 0.5rem 0;
+    font-size: 1.1rem;
   }
 }
 
-/* Add Font Awesome */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+/* Hero Section */
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1594819046723-1e4f8d5669e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Buttons */
+.btn-gold {
+  background-color: var(--primary-color);
+  color: var(--background);
+  padding: 0.75rem 2rem;
+  border-radius: 0.25rem;
+  transition: var(--transition);
+  font-weight: 500;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-gold:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Cards */
+.card {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Fade-in Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Section Spacing */
+.section {
+  padding: 6rem 2rem;
+  scroll-margin-top: 80px;
+}
+
+/* Form Elements */
+input, textarea {
+  background-color: var(--background-light);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  transition: var(--transition);
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(212, 160, 23, 0.2);
+}
+
+/* Social Icons */
+.social-icon {
+  color: var(--text-color);
+  transition: var(--transition);
+}
+
+.social-icon:hover {
+  color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 1rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+}
+
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');

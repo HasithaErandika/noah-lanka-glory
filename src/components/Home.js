@@ -1,22 +1,33 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { FaWhatsapp, FaFacebookF } from 'react-icons/fa';
 
-function Home() {
+const Home = () => {
   useEffect(() => {
-    // Add scroll animation class to elements when they come into view
+    // Fade-in Animation on Scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
       });
-    });
+    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
+    fadeElements.forEach(element => observer.observe(element));
 
-    return () => observer.disconnect();
+    return () => {
+      fadeElements.forEach(element => observer.unobserve(element));
+    };
   }, []);
+
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault();
+    alert("Thank you for subscribing! You'll receive our latest updates soon.");
+    e.target.reset();
+  };
 
   const blogPosts = [
     {
@@ -37,216 +48,137 @@ function Home() {
   ];
 
   return (
-    <div className="home-page">
+    <div className="text-white">
       {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-overlay"></div>
-        <motion.div
-          className="hero-content"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="hero__title">Noah Lanka Glory (Pvt) Ltd</h1>
-          <p className="hero__subtitle">Excellence in Professional Woodworking</p>
-          <div className="hero-buttons">
-            <Link to="/services" className="cta-button primary">
-              Explore Our Services
-            </Link>
-            <Link to="/contact" className="cta-button secondary">
-              Get in Touch
-            </Link>
+      <section id="home" className="hero min-h-screen flex items-center justify-center text-center relative">
+        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        <div className="relative z-10 fade-in">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6">Welcome to Noah Lanka Glory</h2>
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+            Delivering world-class plywood solutions with unmatched quality, innovation, and sustainability.
+          </p>
+          <a href="#products" className="btn-gold inline-block">Explore Our Products</a>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="section bg-[#2a2a2a] py-24">
+        <div className="max-w-7xl mx-auto text-center fade-in px-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">About Our Company</h2>
+          <p className="text-lg max-w-3xl mx-auto mb-6">
+            Since 2016, Noah Lanka Glory (Pvt) Ltd, headquartered in Padukka, Sri Lanka, has been a premier manufacturer of high-quality plywood.
+            Our expertise spans marine, commercial, and custom plywood, serving global markets with a commitment to excellence and environmental responsibility.
+          </p>
+          <p className="text-lg font-medium">
+            Precision Manufacturing — Innovative Solutions — Sustainable Practices
+          </p>
+        </div>
+      </section>
+
+      {/* Key Products Section */}
+      <section id="products" className="section bg-[#1a1a1a] py-24">
+        <div className="max-w-7xl mx-auto text-center fade-in px-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Our Core Products</h2>
+          <p className="text-lg mb-10">Crafted with precision to meet diverse industry needs</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="card">
+              <h3 className="text-2xl font-semibold mb-4">Marine Plywood</h3>
+              <p>Engineered for durability and water resistance, ideal for marine and outdoor applications.</p>
+            </div>
+            <div className="card">
+              <h3 className="text-2xl font-semibold mb-4">Commercial Plywood</h3>
+              <p>Versatile and cost-effective, perfect for furniture and interior design projects.</p>
+            </div>
+            <div className="card">
+              <h3 className="text-2xl font-semibold mb-4">Custom Plywood</h3>
+              <p>Bespoke solutions tailored to your specific project requirements.</p>
+            </div>
           </div>
-        </motion.div>
-        <div className="scroll-indicator">
-          <span>Scroll Down</span>
-          <div className="scroll-arrow"></div>
+          <a href="#products" className="btn-gold mt-10 inline-block">View Product Specifications</a>
         </div>
       </section>
 
-      {/* A Bit About Us Section */}
-      <section className="section section--spacing-default">
-        <div className="section-header animate-on-scroll">
-          <h2 className="section__title">A Bit About Us</h2>
-          <p className="section__subtitle">
-            At Noah Lanka Glory, we combine craftsmanship with innovation to deliver exceptional woodworking solutions.
+      {/* How It Works Section */}
+      <section id="how-it-works" className="section bg-[#2a2a2a] py-24">
+        <div className="max-w-7xl mx-auto text-center fade-in px-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Our Process</h2>
+          <p className="text-lg max-w-2xl mx-auto mb-6 italic">
+            "We combine advanced manufacturing with a relentless focus on quality to deliver plywood that empowers your projects and preserves our planet."
           </p>
-        </div>
-        <motion.div
-          className="section__content animate-on-scroll"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <h3>Our Key Services</h3>
-          <p>
-            From bespoke furniture to stunning wooden interiors, we offer a spectrum of services tailored to elevate your space.
-          </p>
-        </motion.div>
-      </section>
-
-      {/* What We Do (Why Choose Us) Section */}
-      <section className="why-choose-us">
-        <div className="section-header animate-on-scroll">
-          <h2 className="section__title">What We Do</h2>
-          <p className="section__subtitle">Experience the Difference with Noah Lanka Glory</p>
-        </div>
-        <div className="features-grid">
-          <motion.div
-            className="feature-item animate-on-scroll"
-            whileHover={{ y: -5 }}
-            transition={{ duration: 0.3 }}
-          >
-            <i className="fas fa-medal"></i>
-            <h3>Quality Craftsmanship</h3>
-            <p>Every piece is crafted with attention to detail and precision.</p>
-          </motion.div>
-          <motion.div
-            className="feature-item animate-on-scroll"
-            whileHover={{ y: -5 }}
-            transition={{ duration: 0.3 }}
-          >
-            <i className="fas fa-leaf"></i>
-            <h3>Sustainable Materials</h3>
-            <p>We use eco-friendly materials and sustainable practices.</p>
-          </motion.div>
-          <motion.div
-            className="feature-item animate-on-scroll"
-            whileHover={{ y: -5 }}
-            transition={{ duration: 0.3 }}
-          >
-            <i className="fas fa-clock"></i>
-            <h3>Timely Delivery</h3>
-            <p>We respect deadlines and deliver on our promises.</p>
-          </motion.div>
+          <p className="text-lg font-medium">Nimal Perera, Chief Executive Officer</p>
         </div>
       </section>
 
-      {/* Featured Services Preview */}
-      <section className="services-preview">
-        <div className="section-header animate-on-scroll">
-          <h2 className="section__title">Our Key Services</h2>
-          <p className="section__subtitle">Discover Our Comprehensive Range of Woodworking Solutions</p>
-        </div>
-        <div className="services-grid">
-          <motion.div
-            className="service-card animate-on-scroll"
-            whileHover={{ y: -10 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="service-icon">
-              <i className="fas fa-couch"></i>
+      {/* Blog Section */}
+      <section id="blog" className="section bg-[#1a1a1a] py-24">
+        <div className="max-w-7xl mx-auto text-center fade-in px-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Latest Updates</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="card">
+              <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Website Launch" className="w-full h-48 object-cover rounded-t-lg mb-4" />
+              <h3 className="text-2xl font-semibold mb-4">New Website Launch</h3>
+              <p>Our redesigned website offers a seamless experience to explore our premium plywood solutions.</p>
+              <a href="#" className="text-white hover:text-[#d4a017] mt-4 inline-block">Read More →</a>
             </div>
-            <h3>Custom Furniture</h3>
-            <p>Handcrafted furniture tailored to your specific needs and preferences.</p>
-            <Link to="/services" className="service-link">
-              Learn More →
-            </Link>
-          </motion.div>
-          <motion.div
-            className="service-card animate-on-scroll"
-            whileHover={{ y: -10 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="service-icon">
-              <i className="fas fa-home"></i>
+            <div className="card">
+              <img src="https://images.unsplash.com/photo-1629121923967-82e19b23eb83?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Marine Plywood" className="w-full h-48 object-cover rounded-t-lg mb-4" />
+              <h3 className="text-2xl font-semibold mb-4">Marine Plywood Excellence</h3>
+              <p>Discover our latest advancements in durable and water-resistant plywood.</p>
+              <a href="#" className="text-white hover:text-[#d4a017] mt-4 inline-block">Read More →</a>
             </div>
-            <h3>Wooden Interiors</h3>
-            <p>Beautiful wooden interior solutions for homes and businesses.</p>
-            <Link to="/services" className="service-link">
-              Learn More →
-            </Link>
-          </motion.div>
-          <motion.div
-            className="service-card animate-on-scroll"
-            whileHover={{ y: -10 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="service-icon">
-              <i className="fas fa-paint-brush"></i>
+            <div className="card">
+              <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Projects" className="w-full h-48 object-cover rounded-t-lg mb-4" />
+              <h3 className="text-2xl font-semibold mb-4">Recent Projects</h3>
+              <p>Our latest projects highlight our commitment to quality and innovation.</p>
+              <a href="#" className="text-white hover:text-[#d4a017] mt-4 inline-block">Read More →</a>
             </div>
-            <h3>Wooden Artifacts</h3>
-            <p>Unique wooden artifacts and decorative pieces.</p>
-            <Link to="/services" className="service-link">
-              Learn More →
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CEO Message Section */}
-      <section className="section section--spacing-compact section--centered">
-        <motion.div
-          className="section__content animate-on-scroll"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="ceo-quote">
-            "Exciting times ahead as we expand our horizons, offering a spectrum of services designed to elevate your experience and exceed expectations."
-          </p>
-          <p className="ceo-name">Suraj Costa</p>
-          <p className="ceo-title">CEO</p>
-        </motion.div>
-      </section>
-
-      {/* Latest from the Blog Section */}
-      <section className="section section--spacing-large">
-        <div className="section-header animate-on-scroll">
-          <h2 className="section__title">Latest from the Blog</h2>
-          <p className="section__subtitle">Stay Updated with Noah Lanka Glory</p>
-        </div>
-        <div className="services-grid">
-          {blogPosts.map((post, index) => (
-            <motion.div
-              key={index}
-              className="service-card animate-on-scroll"
-              whileHover={{ y: -10 }}
-              transition={{ duration: 0.3 }}
-            >
-              <h3>{post.title}</h3>
-              <p>{post.description}</p>
-              <Link to={post.link} className="service-link">
-                Read More →
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* What Our Clients Say Section */}
-      <section className="section section--spacing-default section--centered">
-        <div className="section-header animate-on-scroll">
-          <h2 className="section__title">What Our Clients Say</h2>
-          <p className="section__subtitle">Voices of Satisfaction</p>
-        </div>
-        <motion.div
-          className="section__content animate-on-scroll"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="feature-item">
-            <p>
-              "Noah Lanka Glory transformed our space with unparalleled craftsmanship and attention to detail."
-            </p>
-            <p className="client-name"><strong>- Happy Client</strong></p>
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Featured Products Section */}
-      <section className="featured-products">
-        <div className="section-header animate-on-scroll">
-          <h2 className="section__title">Featured Products</h2>
-          <p className="section__subtitle">Explore Our Latest Woodworking Creations</p>
+      {/* Testimonials Section */}
+      <section id="testimonials" className="section bg-[#2a2a2a] py-24">
+        <div className="max-w-7xl mx-auto text-center fade-in px-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Client Testimonials</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="card">
+              <p className="italic mb-4">"Noah Lanka Glory's plywood was critical to our project's success, offering unmatched quality and reliability."</p>
+              <p className="font-medium">Kumudu Kumari, Project Manager</p>
+            </div>
+            <div className="card">
+              <p className="italic mb-4">"Their products and service exceeded our expectations, delivering on time and within specifications."</p>
+              <p className="font-medium">Hasitha Erandika, Architect</p>
+            </div>
+            <div className="card">
+              <p className="italic mb-4">"Exceptional support and premium plywood made our construction process seamless."</p>
+              <p className="font-medium">Himasha Wickramasinghe, Contractor</p>
+            </div>
+          </div>
         </div>
-        <div className="products-slider">
-          {/* Add product slider here */}
+      </section>
+
+      {/* Newsletter Signup */}
+      <section id="newsletter" className="section bg-[#1a1a1a] py-24">
+        <div className="max-w-7xl mx-auto text-center fade-in px-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Stay Informed</h2>
+          <p className="text-lg mb-8">Subscribe to receive updates on our latest products and industry insights.</p>
+          <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
+            <div className="flex">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email address"
+                className="w-full p-3 bg-[#2a2a2a] border border-white rounded-l-md focus:outline-none focus:ring-2 focus:ring-[#d4a017] text-white"
+                required
+              />
+              <button type="submit" className="btn-gold rounded-r-md">Subscribe</button>
+            </div>
+          </form>
         </div>
       </section>
     </div>
   );
-}
+};
 
 export default Home;
