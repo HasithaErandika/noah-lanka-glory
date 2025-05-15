@@ -1,56 +1,69 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './Home.css';
+import { motion } from 'framer-motion';
+import Hero from '../components/common/Hero/Hero';
+import Section from '../components/common/Section/Section';
+import Card from '../components/common/Card/Card';
+import Button from '../components/common/Button/Button';
+import '../styles/pages/Home.css';
 
 interface Testimonial {
   quote: string;
   author: string;
   role: string;
+  image: string;
 }
 
-interface BlogPost {
+interface Product {
   image: string;
   title: string;
   description: string;
   link: string;
+  features: string[];
 }
 
 const testimonials: Testimonial[] = [
   {
-    quote: "Noah Lanka Glory's plywood was critical to our project's success, offering unmatched quality and reliability.",
+    quote: "Noah Lanka Glory's premium plywood has been instrumental in our high-end furniture manufacturing. Their commitment to quality is unmatched.",
     author: "Kumudu Kumari",
-    role: "Project Manager"
+    role: "Production Manager, Elite Furniture",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=500"
   },
   {
-    quote: "Their products and service exceeded our expectations, delivering on time and within specifications.",
+    quote: "Their marine-grade plywood has exceeded our expectations in durability and finish. A reliable partner for our boat building projects.",
     author: "Hasitha Erandika",
-    role: "Architect"
+    role: "Technical Director, Marine Solutions",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500"
   },
   {
-    quote: "Exceptional support and premium plywood made our construction process seamless.",
+    quote: "The consistency in quality and timely delivery makes Noah Lanka Glory our preferred plywood supplier for all our construction projects.",
     author: "Himasha Wickramasinghe",
-    role: "Contractor"
+    role: "Project Manager, BuildRight Construction",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500"
   }
 ];
 
-const blogPosts: BlogPost[] = [
+const products: Product[] = [
   {
-    image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    title: "New Website Launch",
-    description: "Our redesigned website offers a seamless experience to explore our premium plywood solutions.",
-    link: "#"
+    image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=800",
+    title: "Marine Plywood",
+    description: "Premium water-resistant plywood for marine and outdoor applications",
+    link: "/products/marine",
+    features: ["Water-resistant", "Durable", "High-quality finish"]
   },
   {
-    image: "https://images.unsplash.com/photo-1594819046723-1e4f8d5669e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    title: "Plywood Innovations",
-    description: "Discover our latest advancements in durable and sustainable plywood products.",
-    link: "#"
+    image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=800",
+    title: "Commercial Plywood",
+    description: "High-quality plywood for furniture and construction projects",
+    link: "/products/commercial",
+    features: ["Versatile", "Cost-effective", "Easy to work with"]
   },
   {
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    title: "Recent Projects",
-    description: "Our latest projects highlight our commitment to quality and innovation.",
-    link: "#"
+    image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=800",
+    title: "Decorative Plywood",
+    description: "Premium veneered plywood for interior design and furniture",
+    link: "/products/decorative",
+    features: ["Aesthetic", "Customizable", "Premium finish"]
   }
 ];
 
@@ -62,139 +75,116 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
-    const fadeElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
 
-    fadeElements.forEach((element) => observer.observe(element));
+    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
-    return () => {
-      fadeElements.forEach((element) => observer.unobserve(element));
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
     <div className="home-page">
-      {/* Hero Section */}
-      <section id="home" className="hero">
-        <div className="fade-in">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">Welcome to Noah Lanka Glory</h2>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Delivering world-class plywood solutions with unmatched quality, innovation, and sustainability.
-          </p>
-          <Link to="/products" className="btn-gold">Explore Our Products</Link>
-        </div>
-      </section>
+      <Hero
+        title="Premium Plywood Solutions"
+        subtitle="Excellence in Quality, Innovation in Design"
+        backgroundImage="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=1920"
+        ctaPrimary={{ text: "Explore Products", link: "/products" }}
+        ctaSecondary={{ text: "Get a Quote", link: "/contact" }}
+      />
 
-      {/* About Section */}
-      <section id="about" className="section bg-[#2a2a2a]">
-        <div className="max-w-7xl mx-auto text-center fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">About Our Company</h2>
-          <p className="text-lg max-w-3xl mx-auto mb-6">
-            Since 2016, Noah Lanka Glory (Pvt) Ltd, headquartered in Padukka, Sri Lanka, has been a premier manufacturer of high-quality plywood.
-            Our expertise spans marine, commercial, and custom plywood, serving global markets with a commitment to excellence and environmental responsibility.
-          </p>
-          <p className="text-lg font-medium">
-            Precision Manufacturing — Innovative Solutions — Sustainable Practices
-          </p>
+      <Section
+        title="Why Choose Us"
+        subtitle="Discover what makes us the preferred choice for premium plywood"
+        className="features-section"
+      >
+        <div className="features-grid">
+          <Card
+            icon="medal"
+            title="Premium Quality"
+            description="Manufactured to international standards with superior materials and rigorous quality control"
+            className="feature-card"
+          />
+          <Card
+            icon="leaf"
+            title="Sustainable Sourcing"
+            description="Responsible forestry practices and certified sustainable wood sourcing"
+            className="feature-card"
+          />
+          <Card
+            icon="tools"
+            title="Custom Solutions"
+            description="Tailored plywood solutions for your specific project requirements"
+            className="feature-card"
+          />
+          <Card
+            icon="truck"
+            title="Global Delivery"
+            description="Efficient logistics and worldwide shipping capabilities"
+            className="feature-card"
+          />
         </div>
-      </section>
+      </Section>
 
-      {/* Key Products Section */}
-      <section id="products" className="section bg-[#1a1a1a]">
-        <div className="max-w-7xl mx-auto text-center fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">Our Core Products</h2>
-          <p className="text-lg mb-10">Crafted with precision to meet diverse industry needs</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="card">
-              <h3 className="text-2xl font-semibold mb-4">Marine Plywood</h3>
-              <p>Engineered for durability and water resistance, ideal for marine and outdoor applications.</p>
-            </div>
-            <div className="card">
-              <h3 className="text-2xl font-semibold mb-4">Commercial Plywood</h3>
-              <p>Versatile and cost-effective, perfect for furniture and interior design projects.</p>
-            </div>
-            <div className="card">
-              <h3 className="text-2xl font-semibold mb-4">Custom Plywood</h3>
-              <p>Bespoke solutions tailored to your specific project requirements.</p>
-            </div>
-          </div>
-          <Link to="/products" className="btn-gold mt-10 inline-block">View Product Specifications</Link>
+      <Section
+        title="Our Products"
+        subtitle="Explore our range of premium plywood solutions"
+        className="products-section"
+      >
+        <div className="products-grid">
+          {products.map((product, index) => (
+            <Card
+              key={index}
+              image={product.image}
+              title={product.title}
+              description={product.description}
+              features={product.features}
+              className="product-card"
+              cta={{ text: "Learn More", link: product.link }}
+            />
+          ))}
         </div>
-      </section>
+      </Section>
 
-      {/* How It Works Section */}
-      <section id="how-it-works" className="section bg-[#2a2a2a]">
-        <div className="max-w-7xl mx-auto text-center fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">Our Process</h2>
-          <p className="text-lg max-w-2xl mx-auto mb-6 italic">
-            "We combine advanced manufacturing with a relentless focus on quality to deliver plywood that empowers your projects and preserves our planet."
-          </p>
-          <p className="text-lg font-medium">Nimal Perera, Chief Executive Officer</p>
+      <Section
+        title="Client Testimonials"
+        subtitle="What our valued customers say about us"
+        className="testimonials-section"
+      >
+        <div className="testimonials-grid">
+          {testimonials.map((testimonial, index) => (
+            <Card
+              key={index}
+              image={testimonial.image}
+              title={testimonial.author}
+              subtitle={testimonial.role}
+              description={testimonial.quote}
+              className="testimonial-card"
+            />
+          ))}
         </div>
-      </section>
+      </Section>
 
-      {/* Blog Section */}
-      <section id="blog" className="section bg-[#1a1a1a]">
-        <div className="max-w-7xl mx-auto text-center fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">Latest Updates</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
-              <div key={index} className="card">
-                <img src={post.image} alt={post.title} className="w-full h-48 object-cover rounded-t-lg mb-4" />
-                <h3 className="text-2xl font-semibold mb-4">{post.title}</h3>
-                <p>{post.description}</p>
-                <Link to={post.link} className="text-white hover:text-[#d4a017] mt-4 inline-block">Read More →</Link>
-              </div>
-            ))}
-          </div>
+      <Section
+        className="cta-section"
+        backgroundImage="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=1920"
+      >
+        <div className="cta-content">
+          <h2>Ready to Start Your Project?</h2>
+          <p>Contact us today for a free consultation and quote</p>
+          <Button
+            text="Get in Touch"
+            link="/contact"
+            variant="primary"
+            size="large"
+          />
         </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section id="testimonials" className="section bg-[#2a2a2a]">
-        <div className="max-w-7xl mx-auto text-center fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">Client Testimonials</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="card">
-                <p className="italic mb-4">{testimonial.quote}</p>
-                <p className="font-medium">{testimonial.author}, {testimonial.role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter Signup */}
-      <section id="newsletter" className="section bg-[#1a1a1a]">
-        <div className="max-w-7xl mx-auto text-center fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">Stay Informed</h2>
-          <p className="text-lg mb-8">Subscribe to receive updates on our latest products and industry insights.</p>
-          <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto">
-            <div className="flex">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email address"
-                className="w-full p-3 bg-[#2a2a2a] border border-white rounded-l-md focus:outline-none focus:ring-2 focus:ring-[#d4a017]"
-                required
-              />
-              <button type="submit" className="btn-gold rounded-r-md">Subscribe</button>
-            </div>
-          </form>
-        </div>
-      </section>
+      </Section>
     </div>
   );
 };
