@@ -1,30 +1,30 @@
-import React, { useEffect } from 'react';
-import { FaWhatsapp, FaFacebookF, FaMapMarkerAlt, FaPhone, FaClock } from 'react-icons/fa';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import React, { useEffect } from 'react'
+import { FaWhatsapp, FaFacebookF, FaMapMarkerAlt, FaPhone, FaClock } from 'react-icons/fa'
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
 
-const Contact = () => {
+const Contact: React.FC = () => {
   useEffect(() => {
     // Initialize Map
-    const map = L.map('map').setView([6.824427, 80.143878], 13);
+    const map = L.map('map').setView([6.824427, 80.143878], 13)
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
+    }).addTo(map)
     
     L.marker([6.824427, 80.143878]).addTo(map)
       .bindPopup('Noah Lanka Glory (Pvt) Ltd<br>No.169/A/2 Bope Watta Rd, Padukka')
-      .openPopup();
+      .openPopup()
 
     return () => {
-      map.remove();
-    };
-  }, []);
+      map.remove()
+    }
+  }, [])
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert('Thank you for your message! We will get back to you soon.');
-    e.target.reset();
-  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    alert('Thank you for your message! We will get back to you soon.')
+    e.currentTarget.reset()
+  }
 
   return (
     <section id="contact" className="section bg-[#2a2a2a] py-24">
@@ -131,7 +131,7 @@ const Contact = () => {
                 <textarea
                   id="message"
                   name="message"
-                  rows="5"
+                  rows={5}
                   className="w-full p-4 bg-[#2a2a2a] border border-[#404040] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4a017] focus:border-transparent text-white transition-all resize-none"
                   placeholder="Your message"
                   required
@@ -171,7 +171,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact 

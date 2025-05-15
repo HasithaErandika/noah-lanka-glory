@@ -1,51 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { FaBars, FaTimes, FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from 'react-icons/fa';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { FaBars, FaTimes, FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from 'react-icons/fa'
+import { motion, AnimatePresence } from 'framer-motion'
 
-const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
-  const location = useLocation();
+interface NavLink {
+  path: string
+  label: string
+  id: string
+}
+
+interface SocialLink {
+  icon: JSX.Element
+  url: string
+  label: string
+}
+
+const Navbar: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+  const [isScrolled, setIsScrolled] = useState<boolean>(false)
+  const [activeSection, setActiveSection] = useState<string>('')
+  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 50)
       
       // Update active section based on scroll position
-      const sections = document.querySelectorAll('section[id]');
-      const scrollPosition = window.scrollY + 100;
+      const sections = document.querySelectorAll('section[id]')
+      const scrollPosition = window.scrollY + 100
 
       sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
+        const sectionTop = section.offsetTop
+        const sectionHeight = section.offsetHeight
+        const sectionId = section.getAttribute('id')
 
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          setActiveSection(sectionId);
+          setActiveSection(sectionId || '')
         }
-      });
-    };
+      })
+    }
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
-  const navLinks = [
+  const navLinks: NavLink[] = [
     { path: '/', label: 'Home', id: 'home' },
     { path: '/services', label: 'Services', id: 'services' },
     { path: '/products', label: 'Products', id: 'products' },
     { path: '/about', label: 'About', id: 'about' },
     { path: '/contact', label: 'Contact', id: 'contact' }
-  ];
+  ]
 
-  const socialLinks = [
+  const socialLinks: SocialLink[] = [
     { icon: <FaFacebook />, url: 'https://facebook.com', label: 'Facebook' },
     { icon: <FaInstagram />, url: 'https://instagram.com', label: 'Instagram' },
     { icon: <FaTwitter />, url: 'https://twitter.com', label: 'Twitter' },
     { icon: <FaWhatsapp />, url: 'https://wa.me/your-number', label: 'WhatsApp' }
-  ];
+  ]
 
   const menuVariants = {
     closed: {
@@ -64,7 +76,7 @@ const Navbar = () => {
         ease: "easeInOut"
       }
     }
-  };
+  }
 
   return (
     <motion.nav 
@@ -136,7 +148,7 @@ const Navbar = () => {
         </div>
       </div>
     </motion.nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar 

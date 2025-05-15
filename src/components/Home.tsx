@@ -1,51 +1,57 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { FaWhatsapp, FaFacebookF } from 'react-icons/fa';
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { FaWhatsapp, FaFacebookF } from 'react-icons/fa'
 
-const Home = () => {
+interface BlogPost {
+  title: string
+  description: string
+  link: string
+}
+
+const Home: React.FC = () => {
   useEffect(() => {
     // Fade-in Animation on Scroll
-    const fadeElements = document.querySelectorAll('.fade-in');
+    const fadeElements = document.querySelectorAll('.fade-in')
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          entry.target.classList.add('visible')
+          observer.unobserve(entry.target)
         }
-      });
-    }, { threshold: 0.1 });
+      })
+    }, { threshold: 0.1 })
 
-    fadeElements.forEach(element => observer.observe(element));
+    fadeElements.forEach(element => observer.observe(element))
 
     return () => {
-      fadeElements.forEach(element => observer.unobserve(element));
-    };
-  }, []);
+      fadeElements.forEach(element => observer.unobserve(element))
+    }
+  }, [])
 
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault();
-    alert("Thank you for subscribing! You'll receive our latest updates soon.");
-    e.target.reset();
-  };
+  const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    alert("Thank you for subscribing! You'll receive our latest updates soon.")
+    e.currentTarget.reset()
+  }
 
-  const blogPosts = [
+  const blogPosts: BlogPost[] = [
     {
       title: "A New Website Was Launched",
-      description: "“A new website has been launched, providing a fresh digital gateway to explore our extensive range of services and offerings.”",
+      description: ""A new website has been launched, providing a fresh digital gateway to explore our extensive range of services and offerings."",
       link: "/blog/web2",
     },
     {
       title: "Products From Noah Lanka Glory",
-      description: "“Discover an array of cutting-edge products meticulously crafted by Noah Lanka Glory to meet the diverse needs of modern industries.”",
+      description: ""Discover an array of cutting-edge products meticulously crafted by Noah Lanka Glory to meet the diverse needs of modern industries."",
       link: "/blog/products",
     },
     {
       title: "Our Latest Projects",
-      description: "“Our latest projects showcase our commitment to innovation and excellence, setting new standards in the industry.”",
+      description: ""Our latest projects showcase our commitment to innovation and excellence, setting new standards in the industry."",
       link: "/blog/work2",
     },
-  ];
+  ]
 
   return (
     <div className="text-white">
@@ -178,7 +184,7 @@ const Home = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home 

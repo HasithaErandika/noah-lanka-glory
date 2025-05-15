@@ -1,13 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Added for linking to detail pages
+import { Link } from 'react-router-dom';
 
-function Products() {
-  const products = [
+interface Product {
+  name: string;
+  category: string;
+  description: string;
+  image: string;
+  link: string;
+}
+
+const Products: React.FC = () => {
+  const products: Product[] = [
     {
       name: "Commercial Plywood",
       category: "Plywood",
       description: "Versatile and durable commercial plywood for construction and interior applications",
-      image: "https://images.unsplash.com/photo-162136 delorean time machine0243618-pexels-photo-1621360243618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      image: "https://images.unsplash.com/photo-1621360243618-pexels-photo-1621360243618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       link: "/products/commercial-plywood"
     },
     {
@@ -57,6 +65,6 @@ function Products() {
       </div>
     </div>
   );
-}
+};
 
-export default Products;
+export default Products; 

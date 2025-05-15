@@ -1,12 +1,38 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaPhone, FaMapMarkerAlt, FaClock, FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
-import './Footer.css';
+import React from 'react'
+import { motion } from 'framer-motion'
+import { FaPhone, FaMapMarkerAlt, FaClock, FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
+import './Footer.css'
 
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
+interface FooterVariants {
+  hidden: {
+    opacity: number
+    y: number
+  }
+  visible: {
+    opacity: number
+    y: number
+    transition: {
+      duration: number
+      staggerChildren: number
+    }
+  }
+}
 
-  const footerVariants = {
+interface ItemVariants {
+  hidden: {
+    opacity: number
+    y: number
+  }
+  visible: {
+    opacity: number
+    y: number
+  }
+}
+
+const Footer: React.FC = () => {
+  const currentYear = new Date().getFullYear()
+
+  const footerVariants: FooterVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -16,12 +42,12 @@ const Footer = () => {
         staggerChildren: 0.2
       }
     }
-  };
+  }
 
-  const itemVariants = {
+  const itemVariants: ItemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
-  };
+  }
 
   return (
     <motion.footer 
@@ -126,7 +152,7 @@ const Footer = () => {
         </motion.div>
       </div>
     </motion.footer>
-  );
-};
+  )
+}
 
-export default Footer; 
+export default Footer 

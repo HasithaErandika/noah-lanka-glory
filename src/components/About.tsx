@@ -1,6 +1,6 @@
 import React from 'react';
 
-function About() {
+const About: React.FC = () => {
   return (
     <div className="about-page">
       <div className="page-header">
@@ -37,6 +37,6 @@ function About() {
       </div>
     </div>
   );
-}
+};
 
 export default About; 
