@@ -1,43 +1,102 @@
 :root {
-  /* Colors */
-  --primary-color: #FFD700; /* Gold for accents (replaced #FFB800) */
-  --primary-light: #FFEA80; /* Lighter gold for subtle highlights */
-  --primary-dark: #E6C200; /* Darker gold for hover states */
-  --secondary-color: #2C3E50; /* Deep blue-gray, kept as a secondary option */
-  --accent-color: #FFD700; /* Matches primary for consistency */
+  /* Color System */
+  --primary-100: #ffd700;
+  --primary-200: #ffdf4d;
+  --primary-300: #ffe680;
+  --primary-400: #ffedb3;
+  --primary-500: #fff4d9;
 
-  /* Text Colors */
-  --text-color: #FFFFFF; /* Pure white for elegance */
-  --text-light: #E0E0E0; /* Soft white for secondary text */
-  --text-dark: #B3B3B3; /* Light gray for muted text */
+  --neutral-100: #ffffff;
+  --neutral-200: #f5f5f5;
+  --neutral-300: #e0e0e0;
+  --neutral-400: #bdbdbd;
+  --neutral-500: #9e9e9e;
+  --neutral-600: #757575;
+  --neutral-700: #616161;
+  --neutral-800: #424242;
+  --neutral-900: #212121;
 
-  /* Background Colors */
-  --background: #121212; /* Elegant black */
-  --background-light: #1E1E1E; /* Slightly lighter black for depth */
-  --card-bg: #1E1E1E; /* Matches background-light for cards */
+  --dark-100: #1e1e1e;
+  --dark-200: #1a1a1a;
+  --dark-300: #161616;
+  --dark-400: #121212;
+  --dark-500: #0a0a0a;
 
-  /* Border Colors */
-  --border-color: #3A3A3A; /* Subtle gray for borders */
+  /* Semantic Colors */
+  --bg-primary: var(--dark-400);
+  --bg-secondary: var(--dark-300);
+  --bg-tertiary: var(--dark-200);
+  --text-primary: var(--neutral-100);
+  --text-secondary: var(--neutral-300);
+  --text-tertiary: var(--neutral-500);
+  --accent-primary: var(--primary-100);
+  --accent-secondary: var(--primary-200);
+  --border-color: var(--neutral-800);
 
-  /* Shadow */
-  --shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.3);
-
-  /* Transitions */
-  --transition: all 0.3s ease;
+  /* Typography */
+  --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-secondary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
 
   /* Spacing */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
 
   /* Border Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-sm: 0.125rem;
+  --radius-base: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-full: 9999px;
 
-  /* Container Width */
-  --container-width: 1200px;
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Z-index */
+  --z-0: 0;
+  --z-10: 10;
+  --z-20: 20;
+  --z-30: 30;
+  --z-40: 40;
+  --z-50: 50;
+  --z-auto: auto;
 }
