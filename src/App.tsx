@@ -2,9 +2,9 @@ import React, { Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
 import { routes } from './config/routes'
-import Navbar from './components/layout/Navbar/Navbar'
-import Footer from './components/layout/Footer/Footer'
-import LoadingSpinner from './components/common/LoadingSpinner/LoadingSpinner'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+import LoadingSpinner from './components/common/LoadingSpinner'
 import './styles/global.css'
 
 const App: React.FC = () => {

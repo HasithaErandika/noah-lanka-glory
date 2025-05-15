@@ -6,15 +6,16 @@
 }
 
 /* Hero Section */
-.hero-section {
-  position: relative;
-  min-height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/hero-bg.jpg');
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1594819046723-1e4f8d5669e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
   background-size: cover;
   background-position: center;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  padding: 0 2rem;
 }
 
 .hero-content {
@@ -352,4 +353,86 @@
 
 .home-page::-webkit-scrollbar-thumb:hover {
   background: var(--primary-dark);
+}
+
+/* Section Styles */
+.section {
+  padding: 6rem 2rem;
+  scroll-margin-top: 80px;
+}
+
+/* Card Styles */
+.card {
+  background-color: #2a2a2a;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Styles */
+.btn-gold {
+  background-color: #d4a017;
+  color: #1a1a1a;
+  padding: 0.75rem 2rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  font-weight: 500;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-gold:hover {
+  background-color: #b8860b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Fade-in Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Newsletter Form */
+#newsletter-form input {
+  background-color: #2a2a2a;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+#newsletter-form input:focus {
+  outline: none;
+  border-color: #d4a017;
+  box-shadow: 0 0 0 2px rgba(212, 160, 23, 0.2);
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
 } 
