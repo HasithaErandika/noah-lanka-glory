@@ -4,14 +4,18 @@ import './Contact.css';
 // Add Google Maps type declarations
 declare global {
   interface Window {
-    initMap: () => void;
+    initMap?: () => void;
     google: typeof google;
   }
 }
 
+type GoogleMaps = typeof google.maps;
+type Map = google.maps.Map;
+type AdvancedMarkerElement = google.maps.marker.AdvancedMarkerElement;
+
 const Contact: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<google.maps.Map | null>(null);
+  const mapInstanceRef = useRef<Map | null>(null);
 
   useEffect(() => {
     let isMounted = true;
