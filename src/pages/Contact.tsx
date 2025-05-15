@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import './Contact.css';
+import '../styles/pages/Contact.css';
 
 // Add Google Maps type declarations
 declare global {

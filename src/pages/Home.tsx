@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Hero from '../components/common/Hero/Hero';
-import Section from '../components/common/Section/Section';
+import Hero from '../components/common/Hero/Hero.tsx';
+import Section from '../components/common/Section/Section.tsx';
 import Card from '../components/common/Card/Card';
 import Button from '../components/common/Button/Button';
 import '../styles/pages/Home.css';
