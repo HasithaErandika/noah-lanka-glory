@@ -1,65 +1,20 @@
 .card {
-  background-color: var(--card-bg); /* #1E1E1E from variables.css */
-  border-radius: var(--radius-md); /* Updated from --border-radius for consistency */
-  padding: var(--spacing-lg);
-  transition: var(--transition);
-}
-
-/* Variants */
-.card--default {
-  box-shadow: var(--shadow); /* 0 2px 4px rgba(0, 0, 0, 0.2) */
-}
-
-.card--outlined {
-  border: 1px solid var(--border-color); /* #3A3A3A from variables.css */
-}
-
-.card--elevated {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Slightly deeper shadow for elegance */
-}
-
-/* Hover Effect */
-.card--hoverable {
-  cursor: pointer;
-}
-
-.card--hoverable:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Enhanced shadow for hover */
-}
-
-.custom-card {
-  position: relative;
-  border-radius: 12px;
+  background: white;
+  border-radius: 8px;
   overflow: hidden;
-  transition: all 0.3s ease;
-  background: var(--card-bg);
-  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card-header {
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.card-content {
-  margin-bottom: 1rem;
-}
-
-.card-footer {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-color);
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
 .card-image {
-  position: relative;
   width: 100%;
   height: 200px;
   overflow: hidden;
-  border-radius: 8px;
-  margin-bottom: 1rem;
 }
 
 .card-image img {
@@ -69,49 +24,126 @@
   transition: transform 0.3s ease;
 }
 
-.custom-card:hover .card-image img {
+.card:hover .card-image img {
   transform: scale(1.05);
 }
 
-/* Card variants */
-.custom-card[data-variant="elevated"] {
-  box-shadow: var(--shadow);
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 1.5rem auto;
+  background: var(--primary-color);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
 }
 
-.custom-card[data-variant="outlined"] {
-  border: 2px solid var(--primary-color);
-  background: transparent;
+.card-content {
+  padding: 1.5rem;
 }
 
-/* Responsive styles */
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.card-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.card-features li {
+  padding: 0.5rem 0;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+}
+
+.card-features li::before {
+  content: '✓';
+  color: var(--primary-color);
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.card .btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* Testimonial Card Styles */
+.testimonial-card {
+  text-align: center;
+}
+
+.testimonial-card .card-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 1.5rem auto;
+}
+
+.testimonial-card .card-title {
+  margin-bottom: 0.25rem;
+}
+
+.testimonial-card .card-subtitle {
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-card .card-description {
+  font-style: italic;
+  position: relative;
+  padding: 0 1rem;
+}
+
+.testimonial-card .card-description::before,
+.testimonial-card .card-description::after {
+  content: '"';
+  color: var(--primary-color);
+  font-size: 2rem;
+  position: absolute;
+}
+
+.testimonial-card .card-description::before {
+  left: 0;
+  top: -0.5rem;
+}
+
+.testimonial-card .card-description::after {
+  right: 0;
+  bottom: -1rem;
+}
+
 @media (max-width: 768px) {
-  .custom-card {
+  .card-image {
+    height: 160px;
+  }
+
+  .card-content {
     padding: 1rem;
   }
 
-  .card-image {
-    height: 150px;
+  .card-title {
+    font-size: 1.25rem;
   }
-}
-
-/* Animation classes */
-.card-enter {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.card-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms, transform 300ms;
-}
-
-.card-exit {
-  opacity: 1;
-}
-
-.card-exit-active {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 300ms, transform 300ms;
 }
