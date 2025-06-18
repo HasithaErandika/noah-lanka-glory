@@ -10,6 +10,7 @@ interface CardProps {
   icon?: string;
   features?: string[];
   className?: string;
+  onClick?: () => void;
   cta?: {
     text: string;
     link: string;
@@ -24,10 +25,11 @@ const Card: React.FC<CardProps> = ({
   icon,
   features,
   className = '',
+  onClick,
   cta
 }) => {
   return (
-    <div className={`card ${className}`}>
+    <div className={`card ${className}`} onClick={onClick}>
       {image && (
         <div className="card-image">
           <img src={image} alt={title} />

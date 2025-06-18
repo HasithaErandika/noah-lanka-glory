@@ -34,17 +34,17 @@ const navItems: NavItem[] = [
 const socialLinks: SocialLink[] = [
   {
     icon: 'fab fa-linkedin',
-    url: 'https://linkedin.com/company/noah-lanka-glory',
+    url: 'https://www.linkedin.com/company/noahlankaglory/',
     label: 'LinkedIn'
   },
   {
     icon: 'fab fa-facebook',
-    url: 'https://facebook.com/noahlankaglory',
+    url: 'https://www.facebook.com/profile.php?id=61564340771307',
     label: 'Facebook'
   },
   {
     icon: 'fab fa-whatsapp',
-    url: 'https://wa.me/your-number',
+    url: 'https://wa.me/94777401651',
     label: 'WhatsApp'
   }
 ];
@@ -54,7 +54,7 @@ const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const location = useLocation();
-  const submenuTimeoutRef = useRef<NodeJS.Timeout>();
+  const submenuTimeoutRef = useRef<number>();
 
   useEffect(() => {
     const handleScroll = () => {

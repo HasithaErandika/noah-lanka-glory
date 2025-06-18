@@ -1,4 +1,7 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import Section from '../components/common/Section/Section';
+import Button from '../components/common/Button/Button';
 import '../styles/pages/Contact.css';
 
 // Add Google Maps type declarations
@@ -138,15 +141,55 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted');
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const subject = formData.get('subject');
+    const message = formData.get('message');
+
+    const emailBody = `
+Dear Noah Lanka Glory Team,
+
+You have received a new message from the website contact form:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sender Information:
+• Name: ${name}
+• Email: ${email}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Message Subject:
+${subject}
+
+Message Content:
+${message}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This message was sent from the Noah Lanka Glory website contact form.
+Date: ${new Date().toLocaleString()}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+
+    const mailtoLink = `mailto:wickramasinghe.erandika@gmail.com?subject=${encodeURIComponent(`[Contact Form] ${subject}`)}&body=${encodeURIComponent(emailBody)}`;
+
+    window.location.href = mailtoLink;
+    form.reset();
   };
 
   return (
     <div className="contact-page">
+      <Section
+        className="contact-hero"
+        backgroundImage="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=1920"
+      >
+        <div className="contact-hero-content">
+          <h1>Contact Us</h1>
+          <p>Get in touch with our team for any inquiries</p>
+        </div>
+      </Section>
+
       <div className="contact-container">
-        <h1 className="contact-title">Contact Us</h1>
-        
         <div className="contact-grid">
           {/* Contact Info */}
           <div className="contact-info">
@@ -168,6 +211,22 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="info-item">
+              <i className="fab fa-whatsapp"></i>
+              <div>
+                <h3>WhatsApp</h3>
+                <p><a href="https://wa.me/94777401651" target="_blank" rel="noopener noreferrer">+94 77 740 1651</a></p>
+              </div>
+            </div>
+
+            <div className="info-item">
+              <i className="fas fa-envelope"></i>
+              <div>
+                <h3>Email</h3>
+                <p><a href="mailto:info@noahlankaglory.com">info@noahlankaglory.com</a></p>
+              </div>
+            </div>
+
+            <div className="info-item">
               <i className="fas fa-clock"></i>
               <div>
                 <h3>Business Hours</h3>
@@ -177,6 +236,46 @@ const Contact: React.FC = () => {
                   <li>Sunday: 9:00 AM–1:00 PM</li>
                 </ul>
               </div>
+            </div>
+
+            <div className="social-links" style={{
+              marginTop: '2rem',
+              display: 'flex',
+              gap: '1rem',
+              justifyContent: 'center'
+            }}>
+              <a href="https://www.linkedin.com/company/noahlankaglory/" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 style={{
+                   padding: '10px 20px',
+                   backgroundColor: '#0077b5',
+                   color: 'white',
+                   textDecoration: 'none',
+                   borderRadius: '5px',
+                   display: 'flex',
+                   alignItems: 'center',
+                   gap: '8px'
+                 }}>
+                <i className="fab fa-linkedin"></i>
+                LinkedIn
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61564340771307" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 style={{
+                   padding: '10px 20px',
+                   backgroundColor: '#4267B2',
+                   color: 'white',
+                   textDecoration: 'none',
+                   borderRadius: '5px',
+                   display: 'flex',
+                   alignItems: 'center',
+                   gap: '8px'
+                 }}>
+                <i className="fab fa-facebook"></i>
+                Facebook
+              </a>
             </div>
 
             <div className="map-container" ref={mapRef}></div>
@@ -237,6 +336,22 @@ const Contact: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <Section
+        className="cta-section"
+        backgroundImage="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=1920"
+      >
+        <div className="cta-content">
+          <h2>Ready to Start Your Project?</h2>
+          <p>Contact us today for a free consultation and quote</p>
+          <Button
+            text="Get in Touch"
+            link="/contact"
+            variant="primary"
+            size="large"
+          />
+        </div>
+      </Section>
     </div>
   );
 };
