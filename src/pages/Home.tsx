@@ -6,6 +6,7 @@ import Section from '../components/common/Section/Section.tsx';
 import Card from '../components/common/Card/Card';
 import Button from '../components/common/Button/Button';
 import '../styles/pages/Home.css';
+import { Helmet } from 'react-helmet';
 
 interface Testimonial {
   quote: string;
@@ -82,27 +83,40 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="home-page">
-      <div className="hidden md:flex fixed right-8 top-1/2 transform -translate-y-1/2 flex-col items-center justify-center gap-4 z-50">
+    <main className="home-page">
+      <Helmet>
+        <title>Noah Lanka Glory Pvt Ltd | Premium Plywood Solutions Sri Lanka</title>
+        <meta name="description" content="Noah Lanka Glory (ARK Ply) delivers premium film faced and local plywood in Sri Lanka. Discover our products, social work, and company updates." />
+        <meta name="keywords" content="Plywood, Film Faced Plywood, Local Plywood, Sri Lanka, ARK Ply, Premium Plywood, Construction Materials, CSR, Company Updates" />
+        <meta property="og:title" content="Noah Lanka Glory Pvt Ltd | Premium Plywood Solutions Sri Lanka" />
+        <meta property="og:description" content="Noah Lanka Glory (ARK Ply) delivers premium film faced and local plywood in Sri Lanka. Discover our products, social work, and company updates." />
+        <meta property="og:image" content="/images/front.jpg" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      <nav aria-label="Section navigation" className="hidden md:flex fixed right-8 top-1/2 transform -translate-y-1/2 flex-col items-center justify-center gap-4 z-50">
         <a href="#why-choose-us" aria-label="Navigate to Why Choose Us" className="nav-dot" />
         <a href="#our-products" aria-label="Navigate to Our Products" className="nav-dot" />
+        <a href="#ceo-message" aria-label="Navigate to CEO Message" className="nav-dot" />
+        <a href="#blog-highlights" aria-label="Navigate to Blog Highlights" className="nav-dot" />
         <a href="#testimonials" aria-label="Navigate to Testimonials" className="nav-dot" />
         <a href="#sponsors" aria-label="Navigate to Sponsors" className="nav-dot" />
         <a href="#cta" aria-label="Navigate to Ready to Start Your Project" className="nav-dot" />
-      </div>
-      <Hero
-        title="Premium Plywood Solutions"
-        subtitle="Excellence in Quality, Innovation in Design"
-        backgroundImage="/images/front.jpg"
-        ctaPrimary={{ text: "Explore Products", link: "/products" }}
-        ctaSecondary={{ text: "Get a Quote", link: "/contact" }}
-      />
-
+      </nav>
+      <section aria-label="Hero" id="hero">
+        <Hero
+          title="Premium Plywood Solutions"
+          subtitle="Excellence in Quality, Innovation in Design"
+          backgroundImage="/images/front.jpg"
+          ctaPrimary={{ text: "Explore Products", link: "/products" }}
+          ctaSecondary={{ text: "Get a Quote", link: "/contact" }}
+        />
+      </section>
       <Section
         id="why-choose-us"
         title="Why Choose Us"
         subtitle="Discover what makes us the preferred choice for premium plywood"
         className="features-section"
+        aria-label="Why Choose Us"
       >
         <div className="features-grid">
           <Card
@@ -131,12 +145,12 @@ const Home: React.FC = () => {
           />
         </div>
       </Section>
-
       <Section
         id="our-products"
         title="Our Products"
         subtitle="Explore our range of premium plywood solutions"
         className="products-section"
+        aria-label="Our Products"
       >
         <div className="products-grid">
           {products.map((product, index) => (
@@ -148,65 +162,64 @@ const Home: React.FC = () => {
               features={product.features}
               className="product-card"
               cta={{ text: "Learn More", link: product.link }}
+              imageAlt={`${product.title} - ${product.description}`}
             />
           ))}
         </div>
       </Section>
-
-      {/* CEO Message Section */}
       <Section
         id="ceo-message"
         title="CEO Message"
         className="ceo-section"
+        aria-label="CEO Message"
       >
         <div className="ceo-message-container">
           <div className="ceo-portrait">
-            <img src="/images/CEO.png" alt="CEO of Noah Lanka Glory Pvt Ltd" />
+            <img src="/images/CEO.png" alt="Portrait of CEO, Noah Lanka Glory Pvt Ltd" />
           </div>
           <blockquote className="ceo-quote">
             <p>
-            At Noah Lanka Glory Pvt Ltd (ARK Ply), we're proud to craft high-quality file face plywood built on precision, sustainability, and trust.
-            Our success lies in the strength of our people and our commitment to innovation, efficiency, and consistent quality.
-            Let's keep moving forward—together—toward a future shaped by excellence.
+                  At Noah Lanka Glory Pvt Ltd (ARK Ply), we’re proud to craft high-quality file face plywood built on precision, sustainability, and trust.
+                  Our success lies in the strength of our people and our commitment to innovation, efficiency, and consistent quality.
+                  Let’s keep moving forward—together—toward a future shaped by excellence.
             </p>
             <footer>– CEO, Noah Lanka Glory Pvt Ltd</footer>
           </blockquote>
         </div>
       </Section>
-
-      {/* Blog Highlights Section */}
       <Section
         id="blog-highlights"
         title="From Our Journal"
         className="blog-section"
+        aria-label="Blog Highlights"
       >
         <div className="blog-highlights-grid">
           <div className="blog-card">
             <div className="blog-icon" aria-label="Social Work">🎗️</div>
             <h3 className="blog-title">Social Work</h3>
             <p className="blog-desc">Our latest CSR initiative brought sustainable building materials to local schools, empowering education and community growth.</p>
-            <a href="#" className="blog-link">Read More</a>
+            <a href="#" className="blog-link" aria-label="Read more about Social Work">Read More</a>
           </div>
           <div className="blog-card">
             <div className="blog-icon" aria-label="New Website Launch">🌐</div>
             <h3 className="blog-title">New Website Launch</h3>
             <p className="blog-desc">Explore our new digital home! Enjoy a modern design, easier navigation, and a seamless experience across all devices.</p>
-            <a href="#" className="blog-link">Read More</a>
+            <a href="#" className="blog-link" aria-label="Read more about New Website Launch">Read More</a>
           </div>
           <div className="blog-card">
             <div className="blog-icon" aria-label="Esteemed Productline">🏆</div>
             <h3 className="blog-title">Esteemed Productline</h3>
             <p className="blog-desc">Discover our hero product: Film Faced Plywood, trusted by industry leaders for its durability and performance.</p>
-            <a href="#" className="blog-link">Read More</a>
+            <a href="#" className="blog-link" aria-label="Read more about Esteemed Productline">Read More</a>
           </div>
         </div>
       </Section>
-
       <Section
         id="testimonials"
         title="Client Testimonials"
         subtitle="What our valued customers say about us"
         className="testimonials-section"
+        aria-label="Client Testimonials"
       >
         <div className="testimonials-grid">
           {testimonials.map((testimonial, index) => (
@@ -217,34 +230,35 @@ const Home: React.FC = () => {
               subtitle={testimonial.role}
               description={testimonial.quote}
               className="testimonial-card"
+              imageAlt={`Portrait of ${testimonial.author}, ${testimonial.role}`}
             />
           ))}
         </div>
       </Section>
-
-      {/* Sponsors Section */}
       <Section
         id="sponsors"
         title="Our Sponsors"
         subtitle="We are proud to be supported by these organizations"
         className="sponsors-section section--gradient"
+        aria-label="Our Sponsors"
       >
         <div className="sponsors-grid">
           {[...Array(8)].map((_, idx) => (
             <img
               key={idx}
               src={`/images/sponsors/sponsor${idx + 1}.png`}
-              alt={`Sponsor ${idx + 1}`}
+              alt={`Logo of Sponsor ${idx + 1}`}
               className="sponsor-logo"
+              loading="lazy"
             />
           ))}
         </div>
       </Section>
-
       <Section
         id="cta"
         className="cta-section"
         backgroundImage="/images/bottom_ARKPLY.png"
+        aria-label="Ready to Start Your Project"
       >
         <div className="cta-content">
           <h2>Ready to Start Your Project?</h2>
@@ -257,7 +271,7 @@ const Home: React.FC = () => {
           />
         </div>
       </Section>
-    </div>
+    </main>
   );
 };
 
