@@ -93,7 +93,7 @@ const Home: React.FC = () => {
       <Hero
         title="Premium Plywood Solutions"
         subtitle="Excellence in Quality, Innovation in Design"
-        backgroundImage="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=1920"
+        backgroundImage="/images/front.jpg"
         ctaPrimary={{ text: "Explore Products", link: "/products" }}
         ctaSecondary={{ text: "Get a Quote", link: "/contact" }}
       />
@@ -105,7 +105,7 @@ const Home: React.FC = () => {
       >
         <div className="features-grid">
           <Card
-            icon="medal"
+            icon="award"
             title="Premium Quality"
             description="Manufactured to international standards with superior materials and rigorous quality control"
             className="feature-card"
@@ -117,13 +117,13 @@ const Home: React.FC = () => {
             className="feature-card"
           />
           <Card
-            icon="tools"
+            icon="cogs"
             title="Custom Solutions"
             description="Tailored plywood solutions for your specific project requirements"
             className="feature-card"
           />
           <Card
-            icon="truck"
+            icon="shipping-fast"
             title="Global Delivery"
             description="Efficient logistics and worldwide shipping capabilities"
             className="feature-card"
@@ -170,9 +170,27 @@ const Home: React.FC = () => {
         </div>
       </Section>
 
+      {/* Sponsors Section */}
+      <Section
+        title="Our Sponsors"
+        subtitle="We are proud to be supported by these organizations"
+        className="sponsors-section section--gradient"
+      >
+        <div className="sponsors-grid">
+          {[...Array(8)].map((_, idx) => (
+            <img
+              key={idx}
+              src={`/images/sponsors/sponsor${idx + 1}.png`}
+              alt={`Sponsor ${idx + 1}`}
+              className="sponsor-logo"
+            />
+          ))}
+        </div>
+      </Section>
+
       <Section
         className="cta-section"
-        backgroundImage="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=1920"
+        backgroundImage="/images/bottom_ARKPLY.png"
       >
         <div className="cta-content">
           <h2>Ready to Start Your Project?</h2>

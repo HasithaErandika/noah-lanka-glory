@@ -37,13 +37,54 @@
 .hero-content p {
   font-size: 1.5rem;
   margin-bottom: 2rem;
-  opacity: 0.9;
+  color: #fff;
+  font-weight: 500;
+  opacity: 1;
+  letter-spacing: 0.01em;
 }
 
 .hero-buttons {
   display: flex;
   gap: 1rem;
   justify-content: center;
+}
+
+.hero-buttons .btn,
+.hero-buttons .btn-primary,
+.hero-buttons .btn-secondary {
+  border-radius: 999px;
+  padding: 0.9rem 2.4rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  display: inline-block;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+}
+
+.hero-buttons .btn-primary {
+  background: #111;
+  color: #ffd700;
+}
+.hero-buttons .btn-primary:hover {
+  background: #222;
+  color: #fffbe6;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.hero-buttons .btn-secondary {
+  background: #ffd700;
+  color: #111;
+}
+.hero-buttons .btn-secondary:hover {
+  background: #ffb300;
+  color: #111;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  transform: translateY(-2px) scale(1.04);
 }
 
 @media (max-width: 768px) {
