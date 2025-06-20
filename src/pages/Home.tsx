@@ -153,6 +153,55 @@ const Home: React.FC = () => {
         </div>
       </Section>
 
+      {/* CEO Message Section */}
+      <Section
+        id="ceo-message"
+        title="CEO Message"
+        className="ceo-section"
+      >
+        <div className="ceo-message-container">
+          <div className="ceo-portrait">
+            <img src="/images/CEO.png" alt="CEO of Noah Lanka Glory Pvt Ltd" />
+          </div>
+          <blockquote className="ceo-quote">
+            <p>
+            At Noah Lanka Glory Pvt Ltd (ARK Ply), we're proud to craft high-quality file face plywood built on precision, sustainability, and trust.
+            Our success lies in the strength of our people and our commitment to innovation, efficiency, and consistent quality.
+            Let's keep moving forward—together—toward a future shaped by excellence.
+            </p>
+            <footer>– CEO, Noah Lanka Glory Pvt Ltd</footer>
+          </blockquote>
+        </div>
+      </Section>
+
+      {/* Blog Highlights Section */}
+      <Section
+        id="blog-highlights"
+        title="From Our Journal"
+        className="blog-section"
+      >
+        <div className="blog-highlights-grid">
+          <div className="blog-card">
+            <div className="blog-icon" aria-label="Social Work">🎗️</div>
+            <h3 className="blog-title">Social Work</h3>
+            <p className="blog-desc">Our latest CSR initiative brought sustainable building materials to local schools, empowering education and community growth.</p>
+            <a href="#" className="blog-link">Read More</a>
+          </div>
+          <div className="blog-card">
+            <div className="blog-icon" aria-label="New Website Launch">🌐</div>
+            <h3 className="blog-title">New Website Launch</h3>
+            <p className="blog-desc">Explore our new digital home! Enjoy a modern design, easier navigation, and a seamless experience across all devices.</p>
+            <a href="#" className="blog-link">Read More</a>
+          </div>
+          <div className="blog-card">
+            <div className="blog-icon" aria-label="Esteemed Productline">🏆</div>
+            <h3 className="blog-title">Esteemed Productline</h3>
+            <p className="blog-desc">Discover our hero product: Film Faced Plywood, trusted by industry leaders for its durability and performance.</p>
+            <a href="#" className="blog-link">Read More</a>
+          </div>
+        </div>
+      </Section>
+
       <Section
         id="testimonials"
         title="Client Testimonials"
