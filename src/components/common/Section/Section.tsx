@@ -7,6 +7,7 @@ interface SectionProps {
   className?: string;
   backgroundImage?: string;
   children: ReactNode;
+  id?: string;
 }
 
 const Section: React.FC<SectionProps> = ({
@@ -14,12 +15,14 @@ const Section: React.FC<SectionProps> = ({
   subtitle,
   className = '',
   backgroundImage,
-  children
+  children,
+  id
 }) => {
   return (
     <section 
       className={`section ${className}`}
       style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
+      id={id}
     >
       <div className="section-overlay"></div>
       <div className="container">

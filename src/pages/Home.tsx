@@ -45,25 +45,18 @@ const testimonials: Testimonial[] = [
 
 const products: Product[] = [
   {
-    image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=800",
-    title: "Marine Plywood",
-    description: "Premium water-resistant plywood for marine and outdoor applications",
-    link: "/products/marine",
-    features: ["Water-resistant", "Durable", "High-quality finish"]
+    image: "/images/product1.png",
+    title: "Film Faced Plywood",
+    description: "Premium film faced plywood with phenolic film coating, perfect for concrete formwork and construction applications. Excellent durability, water resistance, and reusability.",
+    link: "/products/film-faced",
+    features: ["Phenolic film coating", "Water-resistant", "Reusable", "Durable"]
   },
   {
-    image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=800",
-    title: "Commercial Plywood",
-    description: "High-quality plywood for furniture and construction projects",
-    link: "/products/commercial",
-    features: ["Versatile", "Cost-effective", "Easy to work with"]
-  },
-  {
-    image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=800",
-    title: "Decorative Plywood",
-    description: "Premium veneered plywood for interior design and furniture",
-    link: "/products/decorative",
-    features: ["Aesthetic", "Customizable", "Premium finish"]
+    image: "/images/product2.png",
+    title: "Local Plywood",
+    description: "High-quality local plywood for furniture and construction. Cost-effective, versatile, and easy to work with for a variety of projects.",
+    link: "/products/local",
+    features: ["Cost-effective", "Versatile", "Easy to work with", "Locally sourced"]
   }
 ];
 
@@ -90,6 +83,13 @@ const Home: React.FC = () => {
 
   return (
     <div className="home-page">
+      <div className="hidden md:flex fixed right-8 top-1/2 transform -translate-y-1/2 flex-col items-center justify-center gap-4 z-50">
+        <a href="#why-choose-us" aria-label="Navigate to Why Choose Us" className="nav-dot" />
+        <a href="#our-products" aria-label="Navigate to Our Products" className="nav-dot" />
+        <a href="#testimonials" aria-label="Navigate to Testimonials" className="nav-dot" />
+        <a href="#sponsors" aria-label="Navigate to Sponsors" className="nav-dot" />
+        <a href="#cta" aria-label="Navigate to Ready to Start Your Project" className="nav-dot" />
+      </div>
       <Hero
         title="Premium Plywood Solutions"
         subtitle="Excellence in Quality, Innovation in Design"
@@ -99,6 +99,7 @@ const Home: React.FC = () => {
       />
 
       <Section
+        id="why-choose-us"
         title="Why Choose Us"
         subtitle="Discover what makes us the preferred choice for premium plywood"
         className="features-section"
@@ -132,6 +133,7 @@ const Home: React.FC = () => {
       </Section>
 
       <Section
+        id="our-products"
         title="Our Products"
         subtitle="Explore our range of premium plywood solutions"
         className="products-section"
@@ -152,6 +154,7 @@ const Home: React.FC = () => {
       </Section>
 
       <Section
+        id="testimonials"
         title="Client Testimonials"
         subtitle="What our valued customers say about us"
         className="testimonials-section"
@@ -172,6 +175,7 @@ const Home: React.FC = () => {
 
       {/* Sponsors Section */}
       <Section
+        id="sponsors"
         title="Our Sponsors"
         subtitle="We are proud to be supported by these organizations"
         className="sponsors-section section--gradient"
@@ -189,6 +193,7 @@ const Home: React.FC = () => {
       </Section>
 
       <Section
+        id="cta"
         className="cta-section"
         backgroundImage="/images/bottom_ARKPLY.png"
       >

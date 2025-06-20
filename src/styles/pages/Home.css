@@ -195,7 +195,7 @@
 /* Products Section */
 .products-section {
   padding: 6rem 0;
-  background: var(--background);
+  background: #111;
 }
 
 .products-grid {
@@ -206,67 +206,83 @@
 }
 
 .product-card {
-  background: var(--card-bg);
-  border-radius: 1rem;
+  background: #181818;
+  border-radius: 1.2rem;
   overflow: hidden;
-  transition: var(--transition);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border-color);
+  transition: box-shadow 0.3s, transform 0.2s;
+  box-shadow: 0 4px 24px rgba(255, 215, 0, 0.10), 0 1.5px 6px rgba(0,0,0,0.18);
+  border: none;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 260px;
+  max-width: 350px;
+  margin: 0 auto;
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 12px 48px 0 rgba(255, 215, 0, 0.18), 0 4px 18px 0 rgba(0,0,0,0.28);
+  transform: translateY(-6px) scale(1.04);
 }
 
 .product-card .card-image {
-  height: 240px;
-  object-fit: cover;
   width: 100%;
-  transition: var(--transition);
+  height: 220px;
+  object-fit: contain;
+  background: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 0;
+  transition: transform 0.3s;
 }
 
 .product-card:hover .card-image {
   transform: scale(1.05);
 }
 
-.product-card .card-content {
-  padding: 2rem;
-}
-
 .product-card .card-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--text-color);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffd700;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .product-card .card-description {
-  color: var(--text-light);
-  margin-bottom: 1.5rem;
+  color: #fffbe6;
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
   line-height: 1.6;
+  text-align: center;
 }
 
 .product-card .card-features {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
 }
 
-.product-card .card-features li {
-  color: var(--text-light);
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
+.product-card .btn,
+.product-card .btn-outline {
+  border-radius: 999px;
+  padding: 0.7rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: #ffd700;
+  color: #181818;
+  border: none;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.10);
+  margin: 0 auto 1rem auto;
+  display: block;
 }
 
-.product-card .card-features li::before {
-  content: "✓";
-  color: var(--primary-color);
-  margin-right: 0.5rem;
-  font-weight: bold;
-}
-
-.product-card .card-cta {
-  margin-top: 1.5rem;
+.product-card .btn:hover,
+.product-card .btn-outline:hover {
+  background: #ffb300;
+  color: #111;
+  box-shadow: 0 6px 18px rgba(255, 215, 0, 0.18);
+  transform: translateY(-2px) scale(1.04);
 }
 
 /* Testimonials Section */
@@ -283,54 +299,63 @@
 }
 
 .testimonial-card {
-  background: var(--card-bg);
-  border-radius: 1rem;
-  padding: 2rem;
-  transition: var(--transition);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border-color);
+  background: #181818;
+  border-radius: 1.2rem;
+  padding: 2.2rem 1.5rem 1.7rem 1.5rem;
+  transition: box-shadow 0.3s, transform 0.2s;
+  box-shadow: 0 4px 24px rgba(255, 215, 0, 0.10), 0 1.5px 6px rgba(0,0,0,0.18);
+  border: none;
   text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: testimonialFadeIn 0.7s cubic-bezier(.4,2,.6,1) both;
 }
 
 .testimonial-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 12px 48px 0 rgba(255, 215, 0, 0.18), 0 4px 18px 0 rgba(0,0,0,0.28);
+  transform: translateY(-6px) scale(1.04);
 }
 
 .testimonial-card .card-image {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 0 auto 1.5rem;
-  border: 3px solid var(--primary-color);
+  margin: 0 auto 1.3rem;
+  border: 3px solid #ffd700;
+  box-shadow: 0 2px 12px rgba(255, 215, 0, 0.13);
+  background: #222;
 }
 
 .testimonial-card .card-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--text-color);
+  font-size: 1.18rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  color: #ffd700;
 }
 
 .testimonial-card .card-subtitle {
-  color: var(--primary-color);
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
+  color: #fffbe6;
+  font-size: 0.97rem;
+  margin-bottom: 1.1rem;
+  font-weight: 500;
 }
 
 .testimonial-card .card-description {
-  color: var(--text-light);
+  color: #fff;
   font-style: italic;
-  line-height: 1.6;
+  line-height: 1.7;
   position: relative;
-  padding: 0 1rem;
+  padding: 0 1.2rem;
+  font-size: 1.01rem;
 }
 
 .testimonial-card .card-description::before,
 .testimonial-card .card-description::after {
   content: '"';
-  color: var(--primary-color);
+  color: #ffd700;
   font-size: 2rem;
   position: absolute;
 }
@@ -343,6 +368,11 @@
 .testimonial-card .card-description::after {
   right: -0.5rem;
   bottom: -1rem;
+}
+
+@keyframes testimonialFadeIn {
+  from { opacity: 0; transform: translateY(18px) scale(0.98); }
+  to { opacity: 1; transform: none; }
 }
 
 /* CTA Section */
@@ -558,7 +588,7 @@
 .mt-1 { margin-top: 0.5rem; }
 .mt-2 { margin-top: 1rem; }
 .mt-3 { margin-top: 1.5rem; }
-.mt-4 { margin-top: 2rem; }
+.mt-4 { margin-top: 2rem; } 
 
 .sponsors-section {
   padding: 5rem 0 4rem 0;
