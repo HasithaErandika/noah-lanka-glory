@@ -229,4 +229,4 @@ For any queries, please contact:
 
 ---
 
-Made with ❤️ by Noah Lanka Glory Team
+Made with ❤️ by HSE
