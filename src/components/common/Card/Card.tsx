@@ -39,7 +39,13 @@ const Card: React.FC<CardProps> = ({
       )}
       {icon && (
         <div className="card-icon">
-          <i className={`fas fa-${icon}`}></i>
+          {icon.length <= 2 ? (
+            // Emoji icon - render directly
+            <span className="card-emoji">{icon}</span>
+          ) : (
+            // Font Awesome icon - use class
+            <i className={`fas fa-${icon}`}></i>
+          )}
         </div>
       )}
       <div className="card-content">
