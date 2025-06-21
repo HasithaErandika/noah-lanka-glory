@@ -20,11 +20,8 @@ const navItems: NavItem[] = [
     label: 'Products', 
     path: '/products',
     submenu: [
-      { label: 'Marine Plywood', path: '/products/marine' },
-      { label: 'Commercial Plywood', path: '/products/commercial' },
-      { label: 'Decorative Plywood', path: '/products/decorative' },
-      { label: 'Film Faced Plywood', path: '/products/film-faced' },
-      { label: 'Bintangor Veneer', path: '/products/bintangor' }
+      { label: 'Film Faced Plywood', path: '/products' },
+      { label: 'Local Plywood', path: '/products' }
     ]
   },
   { label: 'About', path: '/about' },

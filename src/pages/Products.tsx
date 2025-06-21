@@ -32,92 +32,35 @@ const products: Product[] = [
     about: "Premium film faced plywood with phenolic film coating, perfect for concrete formwork and construction applications. Our film faced plywood offers excellent durability, water resistance, and reusability.",
     details: {
       size: "1220*2440mm, 1250*2500mm or Customizable",
-      thickness: "6/9/12/15mm/18/21mm",
-      core: "Poplar Core, Eucalyptus Core",
-      film: "Brown, Black, Red Phenolic Film",
+      thickness: "12/15/18mm",
+      core: "Poplar",
+      film: "Black",
       glue: "Phenolic, Melamine",
-      price: "USD 11-16/Pcs",
+      price: "Contact for Quote",
       packaging: "Standard Exporting Pallet packing",
       deliveryTime: "15-20 days"
     },
-    image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=1200",
-    thumbnail: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=400"
+    image: "/images/product1.png",
+    thumbnail: "/images/product1.png"
   },
   {
     id: 2,
-    name: "Marine Plywood",
+    name: "Local Plywood",
     date: "2024-03-14",
     views: 3562,
-    about: "High-quality marine plywood designed for use in humid and wet conditions. Made with waterproof glue and premium hardwood veneers, perfect for boat building and marine applications.",
+    about: "High-quality local plywood for furniture and construction. Cost-effective, versatile, and easy to work with for a variety of projects.",
     details: {
-      size: "1220*2440mm, 1250*2500mm",
-      thickness: "6/9/12/15mm",
-      core: "Hardwood Core",
-      film: "Natural Finish",
-      glue: "Marine Grade Phenolic",
-      price: "USD 18-25/Pcs",
-      packaging: "Waterproof Packing",
-      deliveryTime: "20-25 days"
-    },
-    image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=1200",
-    thumbnail: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=400"
-  },
-  {
-    id: 3,
-    name: "Commercial Plywood",
-    date: "2024-03-13",
-    views: 2891,
-    about: "Versatile commercial plywood suitable for furniture, interior decoration, and general construction. Available in various grades and finishes to meet different requirements.",
-    details: {
-      size: "1220*2440mm",
-      thickness: "3/4/6/9/12/15mm",
-      core: "Mixed Hardwood",
-      film: "Natural, Teak, Rosewood",
-      glue: "MR Grade, BWP Grade",
-      price: "USD 8-15/Pcs",
+      size: "1020*2440mm, 1250*2500mm or Customizable",
+      thickness: "12/15/18mm",
+      core: "Poplar",
+      film: "Brown",
+      glue: "Phenolic, Melamine",
+      price: "Contact for Quote",
       packaging: "Standard Packing",
       deliveryTime: "10-15 days"
     },
-    image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=1200",
-    thumbnail: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=400"
-  },
-  {
-    id: 4,
-    name: "BWP Plywood",
-    date: "2024-03-12",
-    views: 3245,
-    about: "Boiling Water Proof (BWP) plywood with superior water resistance. Ideal for outdoor applications, furniture, and areas exposed to moisture.",
-    details: {
-      size: "1220*2440mm",
-      thickness: "6/9/12/15mm",
-      core: "Hardwood Core",
-      film: "Natural, Teak",
-      glue: "BWP Grade",
-      price: "USD 15-22/Pcs",
-      packaging: "Moisture Resistant Packing",
-      deliveryTime: "15-20 days"
-    },
-    image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=1200",
-    thumbnail: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=400"
-  },
-  {
-    id: 5,
-    name: "Flexible Plywood",
-    date: "2024-03-11",
-    views: 1987,
-    about: "Specialized flexible plywood for curved surfaces and unique designs. Perfect for furniture, interior decoration, and architectural applications requiring curved surfaces.",
-    details: {
-      size: "1220*2440mm",
-      thickness: "3/4/6mm",
-      core: "Special Flexible Core",
-      film: "Natural, Various Finishes",
-      glue: "Flexible Grade",
-      price: "USD 20-30/Pcs",
-      packaging: "Special Curved Packing",
-      deliveryTime: "20-25 days"
-    },
-    image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=1200",
-    thumbnail: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=400"
+    image: "/images/product2.png",
+    thumbnail: "/images/product2.png"
   }
 ];
 
@@ -144,7 +87,7 @@ const Products: React.FC = () => {
     <div className="products-page">
       <Section
         className="products-hero"
-        backgroundImage="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=1920"
+        backgroundImage="/images/productHero.jpg"
       >
         <div className="products-hero-content">
           <h1>Our Products</h1>
