@@ -1,147 +1,73 @@
-import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet';
+import Hero from '../components/common/Hero/Hero';
 import Section from '../components/common/Section/Section';
+import Card from '../components/common/Card/Card';
 import Button from '../components/common/Button/Button';
 import '../styles/pages/Contact.css';
 
-// Add Google Maps type declarations
-declare global {
-  interface Window {
-    initMap?: () => void;
-    google: typeof google;
-  }
+interface ContactInfo {
+  icon: string;
+  title: string;
+  content: string;
+  link?: string;
+  linkText?: string;
 }
 
-type GoogleMaps = typeof google.maps;
-type Map = google.maps.Map;
-type AdvancedMarkerElement = google.maps.marker.AdvancedMarkerElement;
+const contactInfo: ContactInfo[] = [
+  {
+    icon: "map-marker-alt",
+    title: "Address",
+    content: "No.169/A/2 Bope Watta Rd, Padukka, Sri Lanka"
+  },
+  {
+    icon: "phone",
+    title: "Phone",
+    content: "+94 11 218 8919",
+    link: "tel:+94112188919",
+    linkText: "Call Now"
+  },
+  {
+    icon: "whatsapp",
+    title: "WhatsApp",
+    content: "+94 77 740 1651",
+    link: "https://wa.me/94777401651",
+    linkText: "Chat Now"
+  },
+  {
+    icon: "envelope",
+    title: "Email",
+    content: "info@noahlankaglory.com",
+    link: "mailto:info@noahlankaglory.com",
+    linkText: "Send Email"
+  }
+];
+
+const businessHours = [
+  { day: "Monday–Friday", hours: "7:30 AM–6:00 PM" },
+  { day: "Saturday", hours: "8:00 AM–3:00 PM" },
+  { day: "Sunday", hours: "9:00 AM–1:00 PM" }
+];
 
 const Contact: React.FC = () => {
-  const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<Map | null>(null);
-
   useEffect(() => {
-    let isMounted = true;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
 
-    const initMap = async () => {
-      if (!mapRef.current || !isMounted) return;
+    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
-      try {
-        // Load the Maps JavaScript API dynamically
-        const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
-
-        const location = { lat: 6.8567, lng: 79.9212 }; // Colombo coordinates
-        
-        // Create the map instance
-        const map = new Map(mapRef.current, {
-          zoom: 15,
-          center: location,
-          mapId: 'dark_map',
-          styles: [
-            {
-              "featureType": "all",
-              "elementType": "labels.text.fill",
-              "stylers": [{"color": "#ffffff"}]
-            },
-            {
-              "featureType": "all",
-              "elementType": "labels.text.stroke",
-              "stylers": [{"visibility": "on"}, {"color": "#000000"}, {"lightness": 16}]
-            },
-            {
-              "featureType": "all",
-              "elementType": "labels.icon",
-              "stylers": [{"visibility": "off"}]
-            },
-            {
-              "featureType": "administrative",
-              "elementType": "geometry.fill",
-              "stylers": [{"color": "#000000"}, {"lightness": 20}]
-            },
-            {
-              "featureType": "administrative",
-              "elementType": "geometry.stroke",
-              "stylers": [{"color": "#000000"}, {"lightness": 17}, {"weight": 1.2}]
-            },
-            {
-              "featureType": "landscape",
-              "elementType": "geometry",
-              "stylers": [{"color": "#000000"}, {"lightness": 20}]
-            },
-            {
-              "featureType": "poi",
-              "elementType": "geometry",
-              "stylers": [{"color": "#000000"}, {"lightness": 21}]
-            },
-            {
-              "featureType": "road.highway",
-              "elementType": "geometry.fill",
-              "stylers": [{"color": "#000000"}, {"lightness": 17}]
-            },
-            {
-              "featureType": "road.highway",
-              "elementType": "geometry.stroke",
-              "stylers": [{"color": "#000000"}, {"lightness": 29}, {"weight": 0.2}]
-            },
-            {
-              "featureType": "road.arterial",
-              "elementType": "geometry",
-              "stylers": [{"color": "#000000"}, {"lightness": 18}]
-            },
-            {
-              "featureType": "road.local",
-              "elementType": "geometry",
-              "stylers": [{"color": "#000000"}, {"lightness": 16}]
-            },
-            {
-              "featureType": "transit",
-              "elementType": "geometry",
-              "stylers": [{"color": "#000000"}, {"lightness": 19}]
-            },
-            {
-              "featureType": "water",
-              "elementType": "geometry",
-              "stylers": [{"color": "#000000"}, {"lightness": 17}]
-            }
-          ]
-        });
-
-        // Store map instance in ref
-        mapInstanceRef.current = map;
-
-        // Create marker using AdvancedMarkerElement
-        const marker = new AdvancedMarkerElement({
-          map,
-          position: location,
-          title: 'Noah Lanka Glory'
-        });
-
-      } catch (error) {
-        console.error('Error initializing map:', error);
-      }
-    };
-
-    // Load Google Maps script
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=maps,marker&callback=initMap`;
-    script.async = true;
-    script.defer = true;
-    window.initMap = initMap;
-    document.head.appendChild(script);
-
-    return () => {
-      isMounted = false;
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-      delete window.initMap;
-    };
+    return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.target as HTMLFormElement;
+    const form = e.currentTarget;
     const formData = new FormData(form);
     
     const name = formData.get('name');
@@ -171,188 +97,189 @@ This message was sent from the Noah Lanka Glory website contact form.
 Date: ${new Date().toLocaleString()}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
 
-    const mailtoLink = `mailto:wickramasinghe.erandika@gmail.com?subject=${encodeURIComponent(`[Contact Form] ${subject}`)}&body=${encodeURIComponent(emailBody)}`;
+    const mailtoLink = `mailto:info@noahlankaglory.com?subject=${encodeURIComponent(`[Contact Form] ${subject}`)}&body=${encodeURIComponent(emailBody)}`;
 
     window.location.href = mailtoLink;
     form.reset();
+    
+    // Show success message
+    alert("Thank you for your message! We'll get back to you soon.");
   };
 
   return (
-    <div className="contact-page">
+    <main className="contact-page">
+      <Helmet>
+        <title>Contact Us | Noah Lanka Glory Pvt Ltd | Premium Plywood Solutions Sri Lanka</title>
+        <meta name="description" content="Get in touch with Noah Lanka Glory (ARK Ply) for premium plywood solutions. Contact us for quotes, inquiries, and expert consultation in Sri Lanka." />
+        <meta name="keywords" content="Contact, Noah Lanka Glory, ARK Ply, Plywood Contact, Sri Lanka, Quote Request, Customer Support" />
+        <meta property="og:title" content="Contact Us | Noah Lanka Glory Pvt Ltd" />
+        <meta property="og:description" content="Get in touch with Noah Lanka Glory (ARK Ply) for premium plywood solutions. Contact us for quotes, inquiries, and expert consultation." />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
+      <nav aria-label="Section navigation" className="hidden md:flex fixed right-8 top-1/2 transform -translate-y-1/2 flex-col items-center justify-center gap-4 z-50">
+        <a href="#contact-hero" aria-label="Navigate to Contact Hero" className="nav-dot" />
+        <a href="#contact-info" aria-label="Navigate to Contact Information" className="nav-dot" />
+        <a href="#contact-form" aria-label="Navigate to Contact Form" className="nav-dot" />
+        <a href="#business-hours" aria-label="Navigate to Business Hours" className="nav-dot" />
+        <a href="#cta" aria-label="Navigate to Call to Action" className="nav-dot" />
+      </nav>
+
+      <section aria-label="Contact Hero" id="contact-hero" className="contact-hero-section">
+        <Hero
+          title="Contact Us"
+          subtitle="Ready to start your project? Let's discuss your plywood needs"
+          backgroundImage="/images/contactUs.png"
+        />
+      </section>
+
       <Section
-        className="contact-hero"
-        backgroundImage="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=1920"
+        id="contact-info"
+        title="Contact Information"
+        subtitle="Multiple ways to reach our team"
+        className="contact-info-section"
+        aria-label="Contact Information"
       >
-        <div className="contact-hero-content">
-          <h1>Contact Us</h1>
-          <p>Get in touch with our team for any inquiries</p>
+        <div className="contact-info-grid">
+          {contactInfo.map((info, index) => (
+            <Card
+              key={index}
+              icon={info.icon}
+              title={info.title}
+              description={info.content}
+              className="contact-info-card"
+              cta={info.link ? { text: info.linkText || "Contact", link: info.link } : undefined}
+            />
+          ))}
         </div>
       </Section>
 
-      <div className="contact-container">
-        <div className="contact-grid">
-          {/* Contact Info */}
-          <div className="contact-info">
-            <h2>Get in Touch</h2>
-            <div className="info-item">
-              <i className="fas fa-map-marker-alt"></i>
-              <div>
-                <h3>Address</h3>
-                <p>No.169/A/2 Bope Watta Rd,<br />Padukka, Sri Lanka</p>
-              </div>
-            </div>
-            
-            <div className="info-item">
-              <i className="fas fa-phone"></i>
-              <div>
-                <h3>Phone</h3>
-                <p><a href="tel:+94112188919">+94 11 218 8919</a></p>
-              </div>
-            </div>
-
-            <div className="info-item">
-              <i className="fab fa-whatsapp"></i>
-              <div>
-                <h3>WhatsApp</h3>
-                <p><a href="https://wa.me/94777401651" target="_blank" rel="noopener noreferrer">+94 77 740 1651</a></p>
-              </div>
-            </div>
-
-            <div className="info-item">
-              <i className="fas fa-envelope"></i>
-              <div>
-                <h3>Email</h3>
-                <p><a href="mailto:info@noahlankaglory.com">info@noahlankaglory.com</a></p>
-              </div>
-            </div>
-
-            <div className="info-item">
-              <i className="fas fa-clock"></i>
-              <div>
-                <h3>Business Hours</h3>
-                <ul className="business-hours">
-                  <li>Monday–Friday: 7:30 AM–6:00 PM</li>
-                  <li>Saturday: 8:00 AM–3:00 PM</li>
-                  <li>Sunday: 9:00 AM–1:00 PM</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="social-links" style={{
-              marginTop: '2rem',
-              display: 'flex',
-              gap: '1rem',
-              justifyContent: 'center'
-            }}>
-              <a href="https://www.linkedin.com/company/noahlankaglory/" 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 style={{
-                   padding: '10px 20px',
-                   backgroundColor: '#0077b5',
-                   color: 'white',
-                   textDecoration: 'none',
-                   borderRadius: '5px',
-                   display: 'flex',
-                   alignItems: 'center',
-                   gap: '8px'
-                 }}>
-                <i className="fab fa-linkedin"></i>
-                LinkedIn
-              </a>
-              <a href="https://www.facebook.com/profile.php?id=61564340771307" 
-                 target="_blank" 
-                 rel="noopener noreferrer"
-                 style={{
-                   padding: '10px 20px',
-                   backgroundColor: '#4267B2',
-                   color: 'white',
-                   textDecoration: 'none',
-                   borderRadius: '5px',
-                   display: 'flex',
-                   alignItems: 'center',
-                   gap: '8px'
-                 }}>
-                <i className="fab fa-facebook"></i>
-                Facebook
-              </a>
-            </div>
-
-            <div className="map-container" ref={mapRef}></div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="contact-form">
-            <h2>Send a Message</h2>
-            <form onSubmit={handleSubmit}>
+      <Section
+        id="contact-form"
+        title="Send Us a Message"
+        subtitle="Tell us about your project requirements"
+        className="contact-form-section"
+        aria-label="Contact Form"
+      >
+        <div className="contact-form-container">
+          <motion.form 
+            className="contact-form"
+            onSubmit={handleFormSubmit}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="form-row">
               <div className="form-group">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name">Full Name *</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   required
-                  placeholder="Your name"
+                  placeholder="Enter your full name"
+                  className="form-input"
                 />
               </div>
-
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">Email Address *</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   required
-                  placeholder="Your email"
+                  placeholder="Enter your email address"
+                  className="form-input"
                 />
               </div>
+            </div>
 
-              <div className="form-group">
-                <label htmlFor="subject">Subject</label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  required
-                  placeholder="Message subject"
-                />
-              </div>
+            <div className="form-group">
+              <label htmlFor="subject">Subject *</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                placeholder="What is this regarding?"
+                className="form-input"
+              />
+            </div>
 
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  placeholder="Your message"
-                ></textarea>
-              </div>
+            <div className="form-group">
+              <label htmlFor="message">Message *</label>
+              <textarea
+                id="message"
+                name="message"
+                rows={6}
+                required
+                placeholder="Tell us about your project requirements, specifications, or any questions you have..."
+                className="form-textarea"
+              ></textarea>
+            </div>
 
-              <button type="submit" className="submit-btn">
-                Send Message
-              </button>
-            </form>
-          </div>
+            <Button
+              text="Send Message"
+              type="submit"
+              variant="primary"
+              size="large"
+              className="submit-button"
+            />
+          </motion.form>
         </div>
-      </div>
+      </Section>
 
       <Section
+        id="business-hours"
+        title="Business Hours"
+        subtitle="When you can reach us"
+        className="business-hours-section"
+        aria-label="Business Hours"
+      >
+        <div className="business-hours-container">
+          <div className="business-hours-grid">
+            {businessHours.map((schedule, index) => (
+              <Card
+                key={index}
+                title={schedule.day}
+                description={schedule.hours}
+                className="business-hours-card"
+              />
+            ))}
+          </div>
+          <div className="business-hours-note">
+            <p>For urgent inquiries outside business hours, please use our WhatsApp or email. We'll respond as soon as possible.</p>
+          </div>
+        </div>
+      </Section>
+
+      <Section
+        id="cta"
         className="cta-section"
-        backgroundImage="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=1920"
+        backgroundImage="/images/bottom_ARKPLY.png"
+        aria-label="Ready to Start Your Project"
       >
         <div className="cta-content">
           <h2>Ready to Start Your Project?</h2>
           <p>Contact us today for a free consultation and quote</p>
-          <Button
-            text="Get in Touch"
-            link="/contact"
-            variant="primary"
-            size="large"
-          />
+          <div className="cta-buttons">
+            <Button
+              text="Get a Quote"
+              link="/contact#contact-form"
+              variant="primary"
+              size="large"
+            />
+            <Button
+              text="Call Now"
+              link="tel:+94112188919"
+              variant="secondary"
+              size="large"
+            />
+          </div>
         </div>
       </Section>
-    </div>
+    </main>
   );
 };
 
