@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import Hero from '../components/common/Hero/Hero.tsx';
-import Section from '../components/common/Section/Section.tsx';
+import Hero from '../components/common/Hero/Hero';
+import Section from '../components/common/Section/Section';
 import Card from '../components/common/Card/Card';
 import Button from '../components/common/Button/Button';
 import '../styles/pages/Home.css';
@@ -62,12 +60,6 @@ const products: Product[] = [
 ];
 
 const Home: React.FC = () => {
-  const handleNewsletterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    alert("Thank you for subscribing! You'll receive our latest updates soon.");
-    e.currentTarget.reset();
-  };
-
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

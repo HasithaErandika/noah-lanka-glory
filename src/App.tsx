@@ -16,7 +16,7 @@ const App: React.FC = () => {
           <main>
             <Suspense fallback={<LoadingSpinner />}>
               <Routes>
-                {routes.map(({ path, element: Element, title }) => (
+                {routes.map(({ path, element: Element }) => (
                   <Route
                     key={path}
                     path={path}

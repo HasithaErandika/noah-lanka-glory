@@ -33,13 +33,6 @@ interface Leader {
   bio: string;
 }
 
-interface TeamMember {
-  name: string;
-  position: string;
-  image: string;
-  department: string;
-}
-
 interface GalleryImage {
   src: string;
   name: string;
