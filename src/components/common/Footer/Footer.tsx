@@ -36,11 +36,8 @@ const Footer: React.FC = () => {
           <div className="footer-section">
             <h3>Our Products</h3>
             <ul className="footer-links">
-              <li><Link to="/products/marine">Marine Plywood</Link></li>
-              <li><Link to="/products/commercial">Commercial Plywood</Link></li>
-              <li><Link to="/products/decorative">Decorative Plywood</Link></li>
               <li><Link to="/products/film-faced">Film Faced Plywood</Link></li>
-              <li><Link to="/products/bintangor">Bintangor Veneer</Link></li>
+              <li><Link to="/products/bintangor">Local Plywood</Link></li>
             </ul>
           </div>
 
@@ -49,11 +46,11 @@ const Footer: React.FC = () => {
             <div className="footer-contact">
               <p>
                 <i className="fas fa-map-marker-alt"></i>
-                123 Industrial Zone, Colombo, Sri Lanka
+                No.169/A/2 Bope Watta Rd, Padukka, Sri Lanka
               </p>
               <p>
                 <i className="fas fa-phone"></i>
-                +94 11 234 5678
+                +94 11 218 8919
               </p>
               <p>
                 <i className="fas fa-envelope"></i>

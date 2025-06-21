@@ -19,17 +19,19 @@
   box-shadow: 0 2px 10px var(--shadow-color);
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
+  border-bottom: 2.5px solid #ffd700;
 }
 
 .header-scrolled {
   background-color: var(--header-bg-scrolled);
   box-shadow: 0 4px 20px var(--shadow-color);
+  border-bottom: 2.5px solid #ffd700;
 }
 
 .header-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1.2rem 2.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -40,23 +42,27 @@
   align-items: center;
   text-decoration: none;
   transition: transform 0.3s ease;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .logo:hover {
-  transform: scale(1.02);
+  transform: scale(1.04);
 }
 
 .logo img {
-  height: 50px;
+  height: 64px;
   width: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(255, 215, 0, 0.10);
+  background: #222;
 }
 
 .logo-text {
   color: var(--text-color);
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.13);
 }
 
 .nav {
@@ -66,7 +72,7 @@
 
 .nav-list {
   display: flex;
-  gap: 2.5rem;
+  gap: 2.8rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -79,15 +85,15 @@
 .nav-link {
   color: var(--text-color);
   text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem 0;
-  transition: all 0.3s ease;
+  font-weight: 600;
+  padding: 0.7rem 0;
+  transition: all 0.3s cubic-bezier(.4,2,.6,1);
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1.1rem;
+  font-size: 1.13rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   position: relative;
 }
 
@@ -97,9 +103,10 @@
   bottom: 0;
   left: 0;
   width: 0;
-  height: 2px;
-  background-color: var(--primary-color);
-  transition: width 0.3s ease;
+  height: 2.5px;
+  background: linear-gradient(90deg, #ffd700 0%, #ffb300 100%);
+  transition: width 0.3s cubic-bezier(.4,2,.6,1);
+  border-radius: 2px;
 }
 
 .nav-link:hover::after {
@@ -108,10 +115,12 @@
 
 .nav-link:hover {
   color: var(--text-color-hover);
+  letter-spacing: 1.5px;
 }
 
 .nav-item.active .nav-link {
   color: var(--text-color-hover);
+  letter-spacing: 1.5px;
 }
 
 .nav-item.active .nav-link::after {
@@ -194,7 +203,7 @@
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .social-links {
@@ -203,23 +212,20 @@
 }
 
 .social-link {
-  color: var(--text-color);
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
-  padding: 0.5rem;
+  color: #ffd700;
+  font-size: 1.35rem;
+  margin: 0 0.2rem;
+  transition: color 0.3s, transform 0.2s;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.3rem;
+  background: rgba(255, 215, 0, 0.07);
 }
 
 .social-link:hover {
-  color: var(--text-color-hover);
-  background-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  color: #fff;
+  background: #ffd700;
+  transform: scale(1.15) rotate(-8deg);
+  box-shadow: 0 2px 12px rgba(255, 215, 0, 0.18);
 }
 
 .mobile-menu-toggle {
