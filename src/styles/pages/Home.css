@@ -18,7 +18,7 @@
   font-family: 'Playfair Display', serif;
   background: var(--background);
   color: var(--text-color);
-  padding-top: 100px;
+  padding-top: 80;
 }
 
 /* Hero Section */
@@ -31,7 +31,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 2rem;
+  padding: 120px 2rem 2rem 2rem;
   position: relative;
   margin-top: 0;
 }

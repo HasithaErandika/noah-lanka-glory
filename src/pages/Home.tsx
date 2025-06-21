@@ -106,7 +106,13 @@ const Home: React.FC = () => {
         <Hero
           title="Premium Plywood Solutions"
           subtitle="Excellence in Quality, Innovation in Design"
-          backgroundImage="/images/front.jpg"
+          backgroundImages={[
+            "/images/front1.jpg",
+            "/images/front2.jpg", 
+            "/images/front3.jpg",
+            "/images/front4.jpg",
+            "/images/front5.jpg"
+          ]}
           ctaPrimary={{ text: "Explore Products", link: "/products" }}
           ctaSecondary={{ text: "Get a Quote", link: "/contact" }}
         />
@@ -179,9 +185,9 @@ const Home: React.FC = () => {
           </div>
           <blockquote className="ceo-quote">
             <p>
-                  At Noah Lanka Glory Pvt Ltd (ARK Ply), we’re proud to craft high-quality file face plywood built on precision, sustainability, and trust.
+                  At Noah Lanka Glory Pvt Ltd (ARK Ply), we're proud to craft high-quality file face plywood built on precision, sustainability, and trust.
                   Our success lies in the strength of our people and our commitment to innovation, efficiency, and consistent quality.
-                  Let’s keep moving forward—together—toward a future shaped by excellence.
+                  Let's keep moving forward—together—toward a future shaped by excellence.
             </p>
             <footer>– CEO, Noah Lanka Glory Pvt Ltd</footer>
           </blockquote>
