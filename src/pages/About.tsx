@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import Hero from '../components/common/Hero/Hero';
 import Section from '../components/common/Section/Section';
@@ -19,6 +19,13 @@ interface Milestone {
   description: string;
 }
 
+interface CompanyHistory {
+  year: string;
+  staff: number;
+  sheets: number;
+  description: string;
+}
+
 interface Leader {
   name: string;
   position: string;
@@ -26,24 +33,39 @@ interface Leader {
   bio: string;
 }
 
+interface TeamMember {
+  name: string;
+  position: string;
+  image: string;
+  department: string;
+}
+
+interface GalleryImage {
+  src: string;
+  name: string;
+  title: string;
+  bio: string;
+  alt: string;
+}
+
 const companyValues: CompanyValue[] = [
   {
-    icon: "star",
+    icon: "🏆",
     title: "Excellence",
     description: "We strive for excellence in everything we do, from product quality to customer service"
   },
   {
-    icon: "leaf",
+    icon: "🌱",
     title: "Sustainability",
     description: "Committed to sustainable practices and responsible forestry management"
   },
   {
-    icon: "handshake",
+    icon: "🤝",
     title: "Integrity",
     description: "Conducting business with honesty, transparency, and ethical practices"
   },
   {
-    icon: "lightbulb",
+    icon: "💡",
     title: "Innovation",
     description: "Continuously innovating and improving our products and processes"
   }
@@ -51,24 +73,75 @@ const companyValues: CompanyValue[] = [
 
 const milestones: Milestone[] = [
   {
-    year: "1995",
+    year: "2016",
     title: "Company Founded",
-    description: "Started as a small family-owned workshop with a vision for quality"
+    description: "Noah Lanka Glory (Pvt) Ltd established as a humble venture in the plywood industry"
   },
   {
-    year: "2005",
-    title: "First Expansion",
-    description: "Expanded operations and invested in modern manufacturing technology"
+    year: "2018",
+    title: "ARKPLY Brand Launch",
+    description: "Introduced our flagship brand ARKPLY, setting new standards in plywood quality"
   },
   {
-    year: "2015",
-    title: "Global Reach",
-    description: "Began serving international markets with premium plywood solutions"
+    year: "2020",
+    title: "Market Expansion",
+    description: "Expanded operations and became a trusted name in the Sri Lankan plywood market"
+  },
+  {
+    year: "2024",
+    title: "Industry Leader",
+    description: "Established as a market leader and trendsetter in plywood manufacturing with diverse product portfolio"
+  }
+];
+
+const companyHistory: CompanyHistory[] = [
+  {
+    year: "2016",
+    staff: 20,
+    sheets: 150,
+    description: "Establish"
+  },
+  {
+    year: "2018",
+    staff: 70,
+    sheets: 250,
+    description: "Growth Phase"
+  },
+  {
+    year: "2019",
+    staff: 14,
+    sheets: 50,
+    description: "Restructuring"
+  },
+  {
+    year: "2021",
+    staff: 65,
+    sheets: 200,
+    description: "Recovery & Expansion"
+  },
+  {
+    year: "2022",
+    staff: 70,
+    sheets: 300,
+    description: "Market Leadership"
   },
   {
     year: "2023",
-    title: "Industry Leader",
-    description: "Established as one of Sri Lanka's leading plywood manufacturers"
+    staff: 70,
+    sheets: 350,
+    description: "Consolidation"
+  },
+  {
+    year: "2024",
+    staff: 70,
+    sheets: 350,
+    description: "Stability & Growth"
+  },
+  {
+    year: "2025",
+    staff: 80,
+    sheets: 500,
+    description: "Future Vision"
   }
 ];
 
@@ -93,7 +166,139 @@ const leaders: Leader[] = [
   }
 ];
 
+const galleryImages: GalleryImage[] = [
+  {
+    src: "/images/product1.png",
+    name: "Premium Plywood",
+    title: "High-Quality Product",
+    bio: "Our flagship premium plywood product, crafted with precision and durability in mind.",
+    alt: "Premium plywood product showcase"
+  },
+  {
+    src: "/images/product2.png",
+    name: "Industrial Grade",
+    title: "Commercial Solution",
+    bio: "Industrial-grade plywood designed for heavy-duty applications and commercial use.",
+    alt: "Industrial grade plywood product"
+  },
+  {
+    src: "/images/aboutUs.png",
+    name: "Our Facility",
+    title: "State-of-the-Art Manufacturing",
+    bio: "Modern manufacturing facility equipped with cutting-edge technology and skilled workforce.",
+    alt: "ARKPLY manufacturing facility"
+  },
+  {
+    src: "/images/contactUs.png",
+    name: "Customer Support",
+    title: "24/7 Service",
+    bio: "Dedicated customer support team ready to assist with all your plywood needs.",
+    alt: "Customer support and contact information"
+  },
+  {
+    src: "/images/CEO.png",
+    name: "Leadership",
+    title: "Executive Team",
+    bio: "Experienced leadership team driving innovation and growth in the plywood industry.",
+    alt: "ARKPLY executive leadership team"
+  },
+  {
+    src: "/images/front.jpg",
+    name: "Company Overview",
+    title: "ARKPLY Excellence",
+    bio: "Comprehensive overview of our company's commitment to quality and customer satisfaction.",
+    alt: "ARKPLY company overview and excellence"
+  }
+];
+
 const About: React.FC = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(2);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [isAutoplayPaused, setIsAutoplayPaused] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const autoplayRef = useRef<number | null>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+
+  // Autoplay functionality
+  useEffect(() => {
+    if (!isAutoplayPaused) {
+      autoplayRef.current = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+      }, 5000); // 5 seconds
+    }
+
+    return () => {
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current);
+      }
+    };
+  }, [isAutoplayPaused, galleryImages.length]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goNext();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goPrev();
+      } else if (e.key === 'Escape' && isLightboxOpen) {
+        setIsLightboxOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isLightboxOpen]);
+
+  const goNext = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const goPrev = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
+
+  const scrollToImage = (index: number) => {
+    setCurrentImageIndex(index);
+  };
+
+  // Touch/swipe support
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      goNext();
+    } else if (isRightSwipe) {
+      goPrev();
+    }
+
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
+
+  const openLightbox = () => {
+    setIsLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setIsLightboxOpen(false);
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -125,7 +330,9 @@ const About: React.FC = () => {
         <a href="#mission-vision" aria-label="Navigate to Mission & Vision" className="nav-dot" />
         <a href="#core-values" aria-label="Navigate to Core Values" className="nav-dot" />
         <a href="#leadership" aria-label="Navigate to Leadership" className="nav-dot" />
+        <a href="#team" aria-label="Navigate to Team" className="nav-dot" />
         <a href="#milestones" aria-label="Navigate to Milestones" className="nav-dot" />
+        <a href="#company-history" aria-label="Navigate to Company History" className="nav-dot" />
         <a href="#cta" aria-label="Navigate to Call to Action" className="nav-dot" />
       </nav>
 
@@ -154,18 +361,18 @@ const About: React.FC = () => {
           >
             <div className="story-text">
               <p>
-                Founded in 1995, Noah Lanka Glory began with a simple mission: to provide the highest quality plywood products to our customers. What started as a small family-owned workshop has grown into one of Sri Lanka's leading plywood manufacturers.
+                Founded in 2016, Noah Lanka Glory (Pvt) Ltd began as a humble venture and has since grown into a trusted name in the plywood industry. With over 8 years of experience, our journey has been defined by innovation, integrity, and an unwavering commitment to quality.
               </p>
               <p>
-                Over the years, we've expanded our operations, invested in cutting-edge technology, and built a team of skilled professionals. Today, we're proud to serve customers worldwide with our premium plywood solutions.
+                From the start, we've embraced cutting-edge solutions to meet evolving market needs. This forward-thinking approach has positioned us as a market leader and trendsetter in plywood manufacturing.
               </p>
               <p>
-                Our journey has been marked by continuous innovation, sustainable practices, and an unwavering commitment to quality. We've weathered challenges, celebrated successes, and built lasting relationships with our customers and partners.
+                Our flagship brand, ARKPLY, has become synonymous with durability, style, and excellence. With a diverse product portfolio tailored to customer requirements, ARKPLY continues to set new benchmarks across all categories of plywood.
               </p>
             </div>
             <div className="story-image">
               <img 
-                src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=800" 
+                src="/images/aboutImg1.png" 
                 alt="Our Manufacturing Facility" 
                 className="story-img"
               />
@@ -242,6 +449,165 @@ const About: React.FC = () => {
       </Section>
 
       <Section
+        id="team"
+        title="Meet Our Team"
+        subtitle="The heart of ARKPLY"
+        className="team-section"
+        aria-label="Team Members"
+      >
+        <div className="team-intro">
+          <p>Beyond leadership, it's our dedicated team that drives innovation, quality, and excellence every day. Here's a glimpse of the people who make it all possible.</p>
+        </div>
+        <div className="gallery-container">
+          <div 
+            className="gallery-wrapper"
+            ref={galleryRef}
+            onMouseEnter={() => setIsAutoplayPaused(true)}
+            onMouseLeave={() => setIsAutoplayPaused(false)}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            {galleryImages.map((image, index) => {
+              const isMain = index === currentImageIndex;
+              const isPrev = index === (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+              const isNext = index === (currentImageIndex + 1) % galleryImages.length;
+              
+              return (
+                <motion.div
+                  key={index}
+                  className={`gallery-item ${isMain ? 'main-image' : isPrev ? 'prev-image' : isNext ? 'next-image' : ''}`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ 
+                    opacity: isMain || isPrev || isNext ? 1 : 0,
+                    scale: isMain ? 1 : 0.7,
+                    rotateY: isMain ? 0 : isPrev ? -20 : 20
+                  }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  onClick={() => isMain ? openLightbox() : scrollToImage(index)}
+                  style={{ 
+                    pointerEvents: isMain || isPrev || isNext ? 'auto' : 'none',
+                    filter: isMain ? 'brightness(1)' : 'brightness(0.6)'
+                  }}
+                >
+                  <img 
+                    src={image.src} 
+                    alt={image.alt}
+                    className="gallery-image"
+                  />
+                  <div className="gallery-overlay"></div>
+                  {isMain && (
+                    <div className="gallery-info">
+                      <h3>{image.name}</h3>
+                      <p>{image.title}</p>
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
+          
+          {/* Progress Bar */}
+          <div className="gallery-progress">
+            <div 
+              className="gallery-progress-bar"
+              style={{ width: `${((currentImageIndex + 1) / galleryImages.length) * 100}%` }}
+            />
+          </div>
+          
+          {/* Navigation Arrows */}
+          <button 
+            className="gallery-nav gallery-nav-prev"
+            onClick={goPrev}
+            aria-label="Previous image"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          
+          <button 
+            className="gallery-nav gallery-nav-next"
+            onClick={goNext}
+            aria-label="Next image"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          
+          <div className="gallery-bullets">
+            {galleryImages.map((_, index) => (
+              <button
+                key={index}
+                className={`gallery-bullet ${index === currentImageIndex ? 'active' : ''}`}
+                onClick={() => scrollToImage(index)}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+        
+        {/* Lightbox */}
+        <AnimatePresence>
+          {isLightboxOpen && (
+            <motion.div
+              className="lightbox-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeLightbox}
+            >
+              <motion.div
+                className="lightbox-content"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button 
+                  className="lightbox-close"
+                  onClick={closeLightbox}
+                  aria-label="Close lightbox"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                
+                <div className="lightbox-image">
+                  <img 
+                    src={galleryImages[currentImageIndex].src} 
+                    alt={galleryImages[currentImageIndex].alt}
+                  />
+                </div>
+                
+                <div className="lightbox-info">
+                  <h2>{galleryImages[currentImageIndex].name}</h2>
+                  <h3>{galleryImages[currentImageIndex].title}</h3>
+                  <p>{galleryImages[currentImageIndex].bio}</p>
+                </div>
+                
+                <div className="lightbox-nav">
+                  <button onClick={goPrev} aria-label="Previous image">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                  <span>{currentImageIndex + 1} / {galleryImages.length}</span>
+                  <button onClick={goNext} aria-label="Next image">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </Section>
+
+      <Section
         id="milestones"
         title="Our Journey"
         subtitle="Key Milestones in Our Growth"
@@ -264,6 +630,57 @@ const About: React.FC = () => {
                   <h3>{milestone.title}</h3>
                   <p>{milestone.description}</p>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section
+        id="company-history"
+        title="Company History"
+        subtitle="Our Growth in Numbers"
+        className="company-history-section"
+        aria-label="Company History"
+      >
+        <div className="company-history-container">
+          <div className="company-history-timeline">
+            {companyHistory.map((history, index) => (
+              <motion.div 
+                key={index}
+                className="history-timeline-item"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <div className="history-card">
+                  <div className="history-year">{history.year}</div>
+                  <div className="history-stats">
+                    <div className="stat-item">
+                      <div className="stat-number">{history.staff}</div>
+                      <div className="stat-label">Staff</div>
+                    </div>
+                    <div className="stat-item">
+                      <div className="stat-number">{history.sheets}</div>
+                      <div className="stat-label">Sheets PD</div>
+                    </div>
+                  </div>
+                  <div className="history-description">{history.description}</div>
+                </div>
+                {index < companyHistory.length - 1 && (
+                  <motion.div 
+                    className="timeline-arrow"
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
+                    viewport={{ once: true }}
+                  >
+                    <svg width="60" height="20" viewBox="0 0 60 20" fill="none">
+                      <path d="M0 10 L50 10 M50 10 L40 5 M50 10 L40 15" stroke="#ffd700" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </motion.div>
+                )}
               </motion.div>
             ))}
           </div>
