@@ -210,7 +210,7 @@ const About: React.FC = () => {
   const [isAutoplayPaused, setIsAutoplayPaused] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const autoplayRef = useRef<number | null>(null);
+  const autoplayRef = useRef<NodeJS.Timeout | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
 
   // Autoplay functionality

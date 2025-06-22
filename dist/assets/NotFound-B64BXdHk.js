@@ -1,0 +1,1 @@
+import{j as o}from"./animations-BMuSO_ke.js";import"./vendor-Bz3rmKJE.js";const e=()=>o.jsxs("div",{className:"not-found-page",children:[o.jsx("h1",{children:"404 - Page Not Found"}),o.jsx("p",{children:"The page you are looking for does not exist."})]});export{e as default};

@@ -1,0 +1,1 @@
+import{j as e}from"./animations-BMuSO_ke.js";import"./vendor-Bz3rmKJE.js";const s=()=>e.jsxs("div",{className:"services-page",children:[e.jsx("h1",{children:"Our Services"}),e.jsx("div",{className:"services-content",children:e.jsx("p",{children:"We offer a wide range of services to meet your needs."})})]});export{s as default};
