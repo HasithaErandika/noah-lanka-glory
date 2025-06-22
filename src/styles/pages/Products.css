@@ -22,31 +22,19 @@
 }
 
 /* Products Hero Section - Shorter for sub-page */
-.products-hero {
+.products-hero-section {
   min-height: 55vh !important;
   max-height: 55vh;
+}
+
+.products-hero-section .hero-section {
+  min-height: 60vh !important;
+  max-height: 60vh;
   background-size: cover !important;
   background-position: center !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  position: relative;
 }
 
-.products-hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-.products-hero-content {
+.products-hero-section .hero-content {
   position: relative;
   z-index: 2;
   max-width: 800px;
@@ -60,42 +48,51 @@
   width: 100%;
 }
 
-.products-hero-content h1 {
+.products-hero-section .hero-content h1 {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  margin-bottom: 1rem;
 }
 
-.products-hero-content p {
+.products-hero-section .hero-content p {
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
   color: #fffbe6;
 }
 
 @media (max-width: 768px) {
-  .products-hero {
+  .products-hero-section {
     min-height: 50vh !important;
     max-height: 50vh;
   }
   
-  .products-hero-content h1 {
+  .products-hero-section .hero-section {
+    min-height: 50vh !important;
+    max-height: 50vh;
+  }
+  
+  .products-hero-section .hero-content h1 {
     font-size: 2.5rem;
   }
   
-  .products-hero-content p {
+  .products-hero-section .hero-content p {
     font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .products-hero {
+  .products-hero-section {
     min-height: 45vh !important;
     max-height: 45vh;
   }
   
-  .products-hero-content h1 {
+  .products-hero-section .hero-section {
+    min-height: 45vh !important;
+    max-height: 45vh;
+  }
+  
+  .products-hero-section .hero-content h1 {
     font-size: 2rem;
     color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
@@ -476,7 +473,7 @@
 }
 
 @media (max-width: 480px) {
-  .products-hero-content h1 {
+  .products-hero-section .hero-content h1 {
     font-size: 2rem;
   }
   
@@ -513,4 +510,23 @@
 
 .products-page::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #ffb300 0%, #ffd700 100%);
+}
+
+/* Navigation Dots */
+.nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.nav-dot:hover,
+.nav-dot.active {
+  background: #ffd700;
+  border-color: #ffd700;
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 } 

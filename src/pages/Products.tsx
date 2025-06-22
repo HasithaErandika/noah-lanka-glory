@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react';
+import { Helmet } from 'react-helmet';
+import Hero from '../components/common/Hero/Hero';
 import Section from '../components/common/Section/Section';
 import Card from '../components/common/Card/Card';
 import '../styles/pages/Products.css';
@@ -84,18 +86,34 @@ const Products: React.FC = () => {
   };
 
   return (
-    <div className="products-page">
-      <Section
-        className="products-hero"
-        backgroundImage="/images/productHero.jpg"
-      >
-        <div className="products-hero-content">
-          <h1>Our Products</h1>
-          <p>Premium Quality Plywood Solutions</p>
-        </div>
-      </Section>
+    <main className="products-page">
+      <Helmet>
+        <title>Our Products | Noah Lanka Glory Pvt Ltd | Premium Plywood Solutions Sri Lanka</title>
+        <meta name="description" content="Explore Noah Lanka Glory's premium plywood products including Film Faced Plywood and Local Plywood. High-quality solutions for construction and furniture." />
+        <meta name="keywords" content="Plywood Products, Film Faced Plywood, Local Plywood, Noah Lanka Glory, ARK Ply, Sri Lanka, Construction Materials" />
+        <meta property="og:title" content="Our Products | Noah Lanka Glory Pvt Ltd" />
+        <meta property="og:description" content="Explore Noah Lanka Glory's premium plywood products including Film Faced Plywood and Local Plywood." />
+        <meta property="og:type" content="website" />
+      </Helmet>
 
-      <Section className="products-section">
+      <nav aria-label="Section navigation" className="hidden md:flex fixed right-8 top-1/2 transform -translate-y-1/2 flex-col items-center justify-center gap-4 z-50">
+        <a href="#products-hero" aria-label="Navigate to Products Hero" className="nav-dot" />
+        <a href="#products-section" aria-label="Navigate to Products Section" className="nav-dot" />
+      </nav>
+
+      <section aria-label="Products Hero" id="products-hero" className="products-hero-section">
+        <Hero
+          title="Our Products"
+          subtitle="Premium Quality Plywood Solutions"
+          backgroundImage="/images/productHero.jpg"
+        />
+      </section>
+
+      <Section 
+        id="products-section"
+        className="products-section"
+        aria-label="Products Section"
+      >
         <div className="search-container">
           <input
             type="text"
@@ -178,7 +196,7 @@ const Products: React.FC = () => {
           </div>
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

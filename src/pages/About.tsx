@@ -43,22 +43,22 @@ interface GalleryImage {
 
 const companyValues: CompanyValue[] = [
   {
-    icon: "🏆",
+    icon: "trophy",
     title: "Excellence",
     description: "We strive for excellence in everything we do, from product quality to customer service"
   },
   {
-    icon: "🌱",
+    icon: "leaf",
     title: "Sustainability",
     description: "Committed to sustainable practices and responsible forestry management"
   },
   {
-    icon: "🤝",
+    icon: "handshake",
     title: "Integrity",
     description: "Conducting business with honesty, transparency, and ethical practices"
   },
   {
-    icon: "💡",
+    icon: "lightbulb",
     title: "Innovation",
     description: "Continuously innovating and improving our products and processes"
   }
@@ -384,7 +384,7 @@ const About: React.FC = () => {
         <div className="mission-vision-container">
           <div className="mission-vision-grid">
             <Card
-              icon="target"
+              icon="bullseye"
               title="Our Mission"
               description="To be the global leader in premium plywood manufacturing, delivering innovative solutions that meet the evolving needs of our customers while maintaining the highest standards of quality and sustainability."
               className="mission-card"

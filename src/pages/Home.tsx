@@ -88,10 +88,10 @@ const Home: React.FC = () => {
       <nav aria-label="Section navigation" className="hidden md:flex fixed right-8 top-1/2 transform -translate-y-1/2 flex-col items-center justify-center gap-4 z-50">
         <a href="#why-choose-us" aria-label="Navigate to Why Choose Us" className="nav-dot" />
         <a href="#our-products" aria-label="Navigate to Our Products" className="nav-dot" />
-        <a href="#ceo-message" aria-label="Navigate to CEO Message" className="nav-dot" />
+        <a href="#ceo-message" aria-label="Navigate to Director Message" className="nav-dot" />
         <a href="#blog-highlights" aria-label="Navigate to Blog Highlights" className="nav-dot" />
         <a href="#testimonials" aria-label="Navigate to Testimonials" className="nav-dot" />
-        <a href="#sponsors" aria-label="Navigate to Sponsors" className="nav-dot" />
+        <a href="#sponsors" aria-label="Navigate to Clients" className="nav-dot" />
         <a href="#cta" aria-label="Navigate to Ready to Start Your Project" className="nav-dot" />
       </nav>
       <section aria-label="Hero" id="hero">
@@ -167,13 +167,13 @@ const Home: React.FC = () => {
       </Section>
       <Section
         id="ceo-message"
-        title="CEO Message"
+        title="Director Message"
         className="ceo-section"
-        aria-label="CEO Message"
+        aria-label="Director Message"
       >
         <div className="ceo-message-container">
           <div className="ceo-portrait">
-            <img src="/images/CEO.png" alt="Portrait of CEO, Noah Lanka Glory Pvt Ltd" />
+            <img src="/images/CEO.png" alt="Portrait of Director, Noah Lanka Glory Pvt Ltd" />
           </div>
           <blockquote className="ceo-quote">
             <p>
@@ -181,7 +181,7 @@ const Home: React.FC = () => {
                   Our success lies in the strength of our people and our commitment to innovation, efficiency, and consistent quality.
                   Let's keep moving forward—together—toward a future shaped by excellence.
             </p>
-            <footer>– CEO, Noah Lanka Glory Pvt Ltd</footer>
+            <footer>– Director, Noah Lanka Glory Pvt Ltd</footer>
           </blockquote>
         </div>
       </Section>
@@ -235,17 +235,17 @@ const Home: React.FC = () => {
       </Section>
       <Section
         id="sponsors"
-        title="Our Sponsors"
-        subtitle="We are proud to be supported by these organizations"
+        title="Our Clients"
+        subtitle="We are proud to be support for these organizations"
         className="sponsors-section section--gradient"
-        aria-label="Our Sponsors"
+        aria-label="Our Clients"
       >
         <div className="sponsors-grid">
           {[...Array(8)].map((_, idx) => (
             <img
               key={idx}
               src={`/images/sponsors/sponsor${idx + 1}.png`}
-              alt={`Logo of Sponsor ${idx + 1}`}
+              alt={`Logo of Client ${idx + 1}`}
               className="sponsor-logo"
               loading="lazy"
             />
