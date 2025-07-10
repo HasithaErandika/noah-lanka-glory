@@ -19,7 +19,7 @@ const contactInfo: ContactInfo[] = [
   {
     icon: "map-marker-alt",
     title: "Address",
-    content: "No.169/A/2 Bope Watta Rd, Padukka, Sri Lanka"
+    content: "No.169/A/2 Bope Watta Rd, Ihala Bope, Padukka, Sri Lanka"
   },
   {
     icon: "phone",
