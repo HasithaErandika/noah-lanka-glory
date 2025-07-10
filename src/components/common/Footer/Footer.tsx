@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
             <div className="footer-contact">
               <p>
                 <i className="fas fa-map-marker-alt"></i>
-                No.169/A/2 Bope Watta Rd, Padukka, Sri Lanka
+                No.169/A/2 Bope Watta Rd, Ihala Bope, Padukka, Sri Lanka
               </p>
               <p>
                 <i className="fas fa-phone"></i>
