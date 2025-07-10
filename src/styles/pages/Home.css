@@ -629,30 +629,31 @@
 }
 
 .sponsor-logo {
-  background: rgba(255,255,255,0.13);
-  border-radius: 1.2rem;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1.5px 6px rgba(0,0,0,0.08);
-  padding: 2rem 3rem;
-  max-width: 200px;
-  max-height: 120px;
-  min-width: 140px;
-  min-height: 80px;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  max-width: 260px;
+  max-height: 140px;
+  min-width: 180px;
+  min-height: 100px;
   object-fit: contain;
-  filter: grayscale(100%) contrast(0.7) brightness(1.1);
-  opacity: 0.85;
-  transition: filter 0.4s cubic-bezier(.4,2,.6,1), opacity 0.3s, box-shadow 0.3s;
-  border: 1.5px solid rgba(255,255,255,0.18);
-  margin: 0;
+  filter: contrast(0.97) brightness(1.08);
+  opacity: 0.97;
+  transition: filter 0.4s cubic-bezier(.4,2,.6,1), opacity 0.3s, box-shadow 0.3s, transform 0.3s;
+  border: none;
+  margin: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .sponsor-logo:hover {
-  filter: grayscale(0%) contrast(1) brightness(1);
+  filter: contrast(1.1) brightness(1.12);
   opacity: 1;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 0 0 32px 0 rgba(255, 215, 0, 0.25), 0 2px 8px rgba(0,0,0,0.12);
   z-index: 2;
+  transform: scale(1.13);
 }
 
 @media (max-width: 900px) {
