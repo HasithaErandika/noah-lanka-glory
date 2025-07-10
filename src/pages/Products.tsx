@@ -33,14 +33,14 @@ const products: Product[] = [
     views: 4185,
     about: "Premium film faced plywood with phenolic film coating, perfect for concrete formwork and construction applications. Our film faced plywood offers excellent durability, water resistance, and reusability.",
     details: {
-      size: "1220*2440mm, 1250*2500mm or Customizable",
+      size: "1220*2440mm",
       thickness: "12/15/18mm",
-      core: "Poplar",
+      core: "Rubber",
       film: "Black",
       glue: "Phenolic, Melamine",
       price: "Contact for Quote",
       packaging: "Standard Exporting Pallet packing",
-      deliveryTime: "15-20 days"
+      deliveryTime: "7-14 days"
     },
     image: "/images/product1.png",
     thumbnail: "/images/product1.png"
@@ -52,14 +52,14 @@ const products: Product[] = [
     views: 3562,
     about: "High-quality local plywood for furniture and construction. Cost-effective, versatile, and easy to work with for a variety of projects.",
     details: {
-      size: "1020*2440mm, 1250*2500mm or Customizable",
+      size: "1020*2440mm",
       thickness: "12/15/18mm",
-      core: "Poplar",
+      core: "Rubber",
       film: "Brown",
       glue: "Phenolic, Melamine",
       price: "Contact for Quote",
       packaging: "Standard Packing",
-      deliveryTime: "10-15 days"
+      deliveryTime: "7-14 days"
     },
     image: "/images/product2.png",
     thumbnail: "/images/product2.png"
