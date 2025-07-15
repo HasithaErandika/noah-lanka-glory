@@ -106,6 +106,24 @@
   }
 }
 
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .hero-section {
+    padding: 1rem;
+  }
+  .hero-buttons .btn,
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-secondary {
+    font-size: 1rem;
+    padding: 0.7rem 1.2rem;
+  }
+}
+
 /* Animation classes */
 .hero-enter {
   opacity: 0;

@@ -184,4 +184,25 @@
   .footer-social {
     justify-content: center;
   }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 2rem 0 1rem;
+  }
+  .footer-container {
+    padding: 0 1rem;
+  }
+  .footer-grid {
+    gap: 1.2rem;
+    grid-template-columns: 1fr;
+  }
+  .footer-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .footer-links a {
+    font-size: 0.95rem;
+    padding-left: 1.1rem;
+  }
 } 

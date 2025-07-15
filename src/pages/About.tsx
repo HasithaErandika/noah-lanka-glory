@@ -310,10 +310,10 @@ const About: React.FC = () => {
     <main className="about-page">
       <Helmet>
         <title>About Us | Noah Lanka Glory Pvt Ltd | Premium Plywood Solutions Sri Lanka</title>
-        <meta name="description" content="Learn about Noah Lanka Glory (ARK Ply) - a leading plywood manufacturer in Sri Lanka since 1995. Discover our story, mission, values, and leadership team." />
+        <meta name="description" content="Learn about Noah Lanka Glory (ARK Ply) - a leading plywood manufacturer in Sri Lanka since 2016. Discover our story, mission, values, and leadership team." />
         <meta name="keywords" content="About Noah Lanka Glory, ARK Ply, Plywood Manufacturer Sri Lanka, Company History, Leadership Team, Core Values" />
         <meta property="og:title" content="About Us | Noah Lanka Glory Pvt Ltd" />
-        <meta property="og:description" content="Learn about Noah Lanka Glory (ARK Ply) - a leading plywood manufacturer in Sri Lanka since 1995." />
+        <meta property="og:description" content="Learn about Noah Lanka Glory (ARK Ply) - a leading plywood manufacturer in Sri Lanka since 2016." />
         <meta property="og:type" content="website" />
       </Helmet>
 
@@ -332,7 +332,7 @@ const About: React.FC = () => {
       <section aria-label="About Hero" id="about-hero" className="about-hero-section">
         <Hero
           title="About Us"
-          subtitle="Excellence in Plywood Manufacturing Since 1995"
+          subtitle="Excellence in Plywood Manufacturing Since 2016"
           backgroundImage="/images/aboutUs.png"
         />
       </section>

@@ -406,4 +406,32 @@
   .social-links {
     display: none;
   }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0.5rem;
+  }
+  .logo img {
+    height: 44px;
+    border-radius: 8px;
+  }
+  .nav {
+    top: 56px;
+    padding: 0.5rem;
+  }
+  .nav-list {
+    gap: 0.2rem;
+  }
+  .nav-link {
+    font-size: 1rem;
+    padding: 0.6rem 0;
+  }
+  .header-actions {
+    gap: 1rem;
+  }
+  .mobile-menu-toggle span {
+    width: 20px;
+    height: 2px;
+  }
 } 
